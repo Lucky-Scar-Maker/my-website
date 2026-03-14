@@ -1,0 +1,667 @@
+---
+title: Kristian Camaj
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-wrapper" id="page-wrapper">
+  <div class="container">
+    <header class="fade-in">
+      <div class="header-left">
+        <div class="site-title"><a href="/">Kristian Camaj</a></div>
+        <nav>
+          <a href="#about">About</a>
+          <a href="#writing">Writing</a>
+          <a href="#shelf">Shelf</a>
+        </nav>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
+        <span class="theme-icon">☀</span>
+      </button>
+    </header>
+
+<div class="main-grid">
+      <div class="about-section fade-in" id="about">
+        <h2 class="section-title">About Me</h2>
+
+        <p class="label">//now//</p>
+        <ul>
+          {%- for item in about.now %}
+          <li>{{ item.text }}</li>
+          {%- endfor %}
+        </ul>
+
+        <p class="label">//interests//</p>
+        <ul>
+          {%- for item in about.interests %}
+          <li>{{ item }}</li>
+          {%- endfor %}
+        </ul>
+      </div>
+
+      <div class="writing-section fade-in" id="writing">
+        <h2 class="section-title">Writing</h2>
+        <ul class="writing-list">
+          {%- for item in writing %}
+          <li>
+            <a href="{{ item.url }}">{{ item.title }}</a>
+            <div class="source">{{ item.source }} · {{ item.year }}</div>
+          </li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <section class="bookshelf-section fade-in" id="shelf">
+      <div class="shelf-tabs">
+        <button class="shelf-tab active" onclick="switchTab('books')">Bookshelf</button>
+        <button class="shelf-tab" onclick="switchTab('movies')">Movie Shelf</button>
+        <button class="shelf-tab" onclick="switchTab('essays')">Long Reads</button>
+      </div>
+
+      <div class="tab-content active" id="tab-books">
+        <div class="search-box">
+          <input type="text" id="book-search" placeholder="Search books by title or author..." oninput="searchBooks()">
+        </div>
+        <div class="sort-controls">
+          <span>Filter:</span>
+          <button class="sort-btn active" onclick="sortBooks('all')">All</button>
+          <button class="sort-btn" onclick="sortBooks('top')">★ Life-Changing</button>
+          <button class="sort-btn" onclick="sortBooks('favorites')">❤ Liked</button>
+          <span class="book-count" id="book-count"></span>
+        </div>
+        
+        <div class="year-label">2026</div>
+        <div class="book-grid" id="books-2026"></div>
+
+        <div class="year-label">2025</div>
+        <div class="book-grid" id="books-2025"></div>
+
+        <div class="year-label">2024</div>
+        <div class="book-grid" id="books-2024"></div>
+
+        <div class="year-label">2023</div>
+        <div class="book-grid" id="books-2023"></div>
+      </div>
+
+      <div class="tab-content" id="tab-movies">
+        <div class="search-box">
+          <input type="text" id="movie-search" placeholder="Search movies by title..." oninput="searchMovies()">
+        </div>
+        <div class="sort-controls">
+          <span>Filter:</span>
+          <button class="sort-btn active" onclick="sortMovies('all')">All</button>
+          <button class="sort-btn" onclick="sortMovies('top')">★ All-Timers</button>
+          <button class="sort-btn" onclick="sortMovies('favorites')">❤ Liked</button>
+          <span class="book-count" id="movie-count"></span>
+        </div>
+        
+        <div class="year-label movie-year">2026</div>
+        <div class="movie-grid" id="movies-2026"></div>
+
+        <div class="year-label movie-year">2025</div>
+        <div class="movie-grid" id="movies-2025"></div>
+
+        <div class="year-label movie-year">2024</div>
+        <div class="movie-grid" id="movies-2024"></div>
+
+        <div class="year-label movie-year">2023</div>
+        <div class="movie-grid" id="movies-2023"></div>
+      </div>
+
+      <div class="tab-content" id="tab-essays">
+        <div class="sort-controls">
+          <span>Filter:</span>
+          <button class="sort-btn active" onclick="sortEssays('all')">All</button>
+          <button class="sort-btn" onclick="sortEssays('top')">★ Core Reads</button>
+          <span class="book-count" id="essay-count"></span>
+        </div>
+        
+        <ul class="essays-list" id="essays-list"></ul>
+      </div>
+    </section>
+
+    <footer>
+    </footer>
+    
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</button>
+
+    <!-- Book Modal -->
+    <div class="modal-overlay" id="modal">
+      <div class="modal">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <img class="modal-cover" id="modal-cover" src="" alt="">
+        <div class="modal-title" id="modal-title"></div>
+        <div class="modal-author" id="modal-author"></div>
+        <div class="modal-review" id="modal-review"></div>
+      </div>
+    </div>
+
+    <!-- Movie Modal -->
+    <div class="modal-overlay" id="movie-modal">
+      <div class="modal">
+        <button class="modal-close" onclick="closeMovieModal()">×</button>
+        <img class="modal-cover" id="movie-modal-poster" src="" alt="">
+        <div class="modal-title" id="movie-modal-title"></div>
+        <div class="modal-author" id="movie-modal-year"></div>
+        <div class="modal-review" id="movie-modal-review"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <script>
+    // Data from JSON files (injected at build time)
+    const books = {{ books | dump | safe }};
+    const movies = {{ movies | dump | safe }};
+    const essays = {{ essays | dump | safe }};
+
+    // Theme toggle
+    function toggleTheme() {
+      const wrapper = document.getElementById('page-wrapper');
+      const isDark = wrapper.classList.contains('dark-mode');
+      
+      if (isDark) {
+        wrapper.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+        updateThemeIcon('light');
+      } else {
+        wrapper.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+        updateThemeIcon('dark');
+      }
+    }
+
+    function updateThemeIcon(theme) {
+      const icon = document.querySelector('.theme-icon');
+      icon.textContent = theme === 'dark' ? '☽' : '☀';
+    }
+
+    function loadTheme() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      if (savedTheme === 'dark') {
+        document.getElementById('page-wrapper').classList.add('dark-mode');
+      }
+      updateThemeIcon(savedTheme);
+    }
+
+    // Tab switching
+    function switchTab(tab) {
+      document.querySelectorAll('.shelf-tab').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      document.getElementById(`tab-${tab}`).classList.add('active');
+    }
+
+    // Scroll to top
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('scroll', () => {
+      const scrollBtn = document.getElementById('scrollTop');
+      if (window.scrollY > 500) {
+        scrollBtn.classList.add('visible');
+      } else {
+        scrollBtn.classList.remove('visible');
+      }
+    });
+
+    // Book count
+    function updateBookCount() {
+      let total = 0;
+      Object.keys(books).forEach(year => {
+        const grid = document.getElementById(`books-${year}`);
+        if (grid) total += grid.children.length;
+      });
+      document.getElementById('book-count').textContent = `${total} books`;
+    }
+
+    // Book sort and search
+    let currentSort = 'all';
+    let currentBookSearch = '';
+
+    function searchBooks() {
+      const searchInput = document.getElementById('book-search');
+      currentBookSearch = searchInput.value.toLowerCase();
+      filterAndDisplayBooks();
+    }
+
+    function sortBooks(type) {
+      currentSort = type;
+
+      document.querySelectorAll('#tab-books .sort-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+
+      filterAndDisplayBooks();
+    }
+
+    function filterAndDisplayBooks() {
+      Object.keys(books).forEach(year => {
+        const grid = document.getElementById(`books-${year}`);
+        if (grid) {
+          grid.innerHTML = '';
+
+          let filteredBooks = books[year];
+
+          // Apply badge filter
+          if (currentSort === 'top') {
+            filteredBooks = filteredBooks.filter(b => b.badge === '★');
+          } else if (currentSort === 'favorites') {
+            filteredBooks = filteredBooks.filter(b => b.badge === '❤' || b.badge === '★');
+          }
+
+          // Apply search filter
+          if (currentBookSearch) {
+            filteredBooks = filteredBooks.filter(b => {
+              const titleMatch = b.title.toLowerCase().includes(currentBookSearch);
+              const authorMatch = b.author && b.author.toLowerCase().includes(currentBookSearch);
+              return titleMatch || authorMatch;
+            });
+          }
+
+          filteredBooks.forEach(book => {
+            grid.appendChild(createBookElement(book));
+          });
+        }
+      });
+
+      document.querySelectorAll('#tab-books .year-label').forEach(label => {
+        const year = label.textContent;
+        const grid = document.getElementById(`books-${year}`);
+        if (grid && grid.children.length === 0) {
+          label.style.display = 'none';
+          grid.style.display = 'none';
+        } else {
+          label.style.display = 'block';
+          grid.style.display = 'grid';
+        }
+      });
+
+      updateBookCount();
+    }
+
+    // Book modal
+    function openModal(book) {
+      const modal = document.getElementById('modal');
+      const cover = document.getElementById('modal-cover');
+      const title = document.getElementById('modal-title');
+      const author = document.getElementById('modal-author');
+      const review = document.getElementById('modal-review');
+      
+      const coverUrl = book.cover || (book.isbn ? `https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg` : null);
+      
+      if (coverUrl) {
+        cover.src = coverUrl;
+        cover.style.display = 'block';
+      } else {
+        cover.style.display = 'none';
+      }
+      
+      title.textContent = book.title;
+      author.textContent = book.author || '';
+      
+      if (book.review) {
+        review.textContent = book.review;
+        review.className = 'modal-review';
+      } else {
+        review.textContent = 'No review yet.';
+        review.className = 'modal-no-review';
+      }
+      
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('modal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    // Create book element
+    function createBookElement(book) {
+      const div = document.createElement('div');
+      div.className = 'book-cover';
+      div.title = book.title;
+      div.onclick = () => openModal(book);
+      
+      const titleSpan = document.createElement('span');
+      titleSpan.className = 'title-fallback';
+      titleSpan.textContent = book.title;
+      div.appendChild(titleSpan);
+      
+      if (book.badge) {
+        const badge = document.createElement('span');
+        badge.className = 'badge';
+        if (book.badge === '❤') badge.classList.add('heart');
+        if (book.badge === '★') badge.classList.add('star');
+        badge.textContent = book.badge;
+        div.appendChild(badge);
+      }
+      
+      const coverUrl = book.cover || (book.isbn ? `https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg` : null);
+      
+      if (coverUrl) {
+        const img = document.createElement('img');
+        img.src = coverUrl;
+        img.alt = book.title;
+        img.loading = 'lazy';
+        img.onload = function() {
+          if (this.naturalWidth > 1 && this.naturalHeight > 1) {
+            div.classList.add('has-image');
+          }
+        };
+        img.onerror = function() { this.remove(); };
+        div.appendChild(img);
+      }
+      
+      return div;
+    }
+
+    function populateBooks() {
+      Object.keys(books).forEach(year => {
+        const grid = document.getElementById(`books-${year}`);
+        if (grid) {
+          books[year].forEach(book => {
+            grid.appendChild(createBookElement(book));
+          });
+        }
+      });
+    }
+
+    // Movies
+    let currentMovieSort = 'all';
+    let currentMovieSearch = '';
+
+    function searchMovies() {
+      const searchInput = document.getElementById('movie-search');
+      currentMovieSearch = searchInput.value.toLowerCase();
+      filterAndDisplayMovies();
+    }
+
+    function sortMovies(type) {
+      currentMovieSort = type;
+
+      document.querySelectorAll('#tab-movies .sort-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+
+      filterAndDisplayMovies();
+    }
+
+    function filterAndDisplayMovies() {
+      Object.keys(movies).forEach(year => {
+        const grid = document.getElementById(`movies-${year}`);
+        if (grid) {
+          grid.innerHTML = '';
+
+          let filteredMovies = movies[year];
+
+          // Apply badge filter
+          if (currentMovieSort === 'top') {
+            filteredMovies = filteredMovies.filter(m => m.badge === '★');
+          } else if (currentMovieSort === 'favorites') {
+            filteredMovies = filteredMovies.filter(m => m.badge === '❤' || m.badge === '★');
+          }
+
+          // Apply search filter
+          if (currentMovieSearch) {
+            filteredMovies = filteredMovies.filter(m => {
+              return m.title.toLowerCase().includes(currentMovieSearch);
+            });
+          }
+
+          filteredMovies.forEach(movie => {
+            grid.appendChild(createMovieElement(movie));
+          });
+        }
+      });
+
+      document.querySelectorAll('.movie-year').forEach(label => {
+        const year = label.textContent;
+        const grid = document.getElementById(`movies-${year}`);
+        if (grid && grid.children.length === 0) {
+          label.style.display = 'none';
+          grid.style.display = 'none';
+        } else {
+          label.style.display = 'block';
+          grid.style.display = 'grid';
+        }
+      });
+
+      updateMovieCount();
+    }
+
+    function openMovieModal(movie) {
+      const modal = document.getElementById('movie-modal');
+      const poster = document.getElementById('movie-modal-poster');
+      const title = document.getElementById('movie-modal-title');
+      const year = document.getElementById('movie-modal-year');
+      const review = document.getElementById('movie-modal-review');
+      
+      if (movie.poster) {
+        poster.src = movie.poster;
+        poster.style.display = 'block';
+      } else {
+        poster.style.display = 'none';
+      }
+      
+      title.textContent = movie.title;
+      year.textContent = movie.year ? `(${movie.year})` : '';
+      
+      if (movie.review) {
+        review.textContent = movie.review;
+        review.className = 'modal-review';
+      } else {
+        review.textContent = 'No review yet.';
+        review.className = 'modal-no-review';
+      }
+      
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMovieModal() {
+      document.getElementById('movie-modal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('movie-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeMovieModal();
+    });
+
+    function updateMovieCount() {
+      let count = 0;
+      Object.keys(movies).forEach(year => {
+        const grid = document.getElementById(`movies-${year}`);
+        if (grid) count += grid.children.length;
+      });
+      document.getElementById('movie-count').textContent = `${count} films`;
+    }
+
+    function createMovieElement(movie) {
+      const div = document.createElement('div');
+      div.className = 'movie-poster';
+      div.title = movie.title;
+      div.onclick = () => openMovieModal(movie);
+      
+      const titleSpan = document.createElement('span');
+      titleSpan.className = 'title-fallback';
+      titleSpan.textContent = movie.title;
+      div.appendChild(titleSpan);
+      
+      if (movie.badge) {
+        const badge = document.createElement('span');
+        badge.className = 'badge';
+        if (movie.badge === '❤') badge.classList.add('heart');
+        if (movie.badge === '★') badge.classList.add('star');
+        badge.textContent = movie.badge;
+        div.appendChild(badge);
+      }
+      
+      if (movie.poster) {
+        // Use custom poster if provided
+        const img = document.createElement('img');
+        img.src = movie.poster;
+        img.alt = movie.title;
+        img.loading = 'lazy';
+        img.onload = function() { div.classList.add('has-image'); };
+        img.onerror = function() { this.remove(); };
+        div.appendChild(img);
+      } else {
+        // Fetch from OMDB
+        const searchTitle = encodeURIComponent(movie.title);
+        const yearParam = movie.year ? `&y=${movie.year}` : '';
+
+        fetch(`https://www.omdbapi.com/?t=${searchTitle}${yearParam}&apikey=72bc447a`)
+          .then(res => res.json())
+          .then(data => {
+            if (data.Poster && data.Poster !== 'N/A') {
+              movie.poster = data.Poster;
+              const img = document.createElement('img');
+              img.src = data.Poster;
+              img.alt = movie.title;
+              img.loading = 'lazy';
+              img.onload = function() { div.classList.add('has-image'); };
+              img.onerror = function() { this.remove(); };
+              div.appendChild(img);
+            }
+          })
+          .catch(() => {});
+      }
+      
+      return div;
+    }
+
+    function populateMovies() {
+      Object.keys(movies).forEach(year => {
+        const grid = document.getElementById(`movies-${year}`);
+        if (grid) {
+          movies[year].forEach(movie => {
+            grid.appendChild(createMovieElement(movie));
+          });
+        }
+      });
+    }
+
+    // Essays
+    let currentEssaySort = 'all';
+
+    function sortEssays(type) {
+      currentEssaySort = type;
+      
+      document.querySelectorAll('#tab-essays .sort-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      
+      populateEssays();
+      updateEssayCount();
+    }
+
+    function updateEssayCount() {
+      const list = document.getElementById('essays-list');
+      const count = list ? list.children.length : 0;
+      document.getElementById('essay-count').textContent = `${count} essays`;
+    }
+
+    function createEssayElement(essay) {
+      const li = document.createElement('li');
+      li.className = 'essay-item';
+      
+      const titleDiv = document.createElement('div');
+      titleDiv.className = 'essay-title';
+      
+      const link = document.createElement('a');
+      link.href = essay.url;
+      link.target = '_blank';
+      link.textContent = essay.title;
+      titleDiv.appendChild(link);
+      
+      if (essay.badge) {
+        const badge = document.createElement('span');
+        badge.className = 'essay-badge';
+        if (essay.badge === '❤') badge.classList.add('heart');
+        if (essay.badge === '★') badge.classList.add('star');
+        badge.textContent = essay.badge;
+        titleDiv.appendChild(badge);
+      }
+      
+      li.appendChild(titleDiv);
+      
+      const meta = document.createElement('div');
+      meta.className = 'essay-meta';
+      meta.textContent = `${essay.author} · ${essay.source}`;
+      li.appendChild(meta);
+      
+      if (essay.review) {
+        const review = document.createElement('div');
+        review.className = 'essay-review';
+        review.textContent = essay.review;
+        li.appendChild(review);
+      }
+      
+      return li;
+    }
+
+    function populateEssays() {
+      const list = document.getElementById('essays-list');
+      if (list) {
+        list.innerHTML = '';
+        
+        let filteredEssays = essays;
+        if (currentEssaySort === 'top') {
+          filteredEssays = essays.filter(e => e.badge === '★');
+        } else if (currentEssaySort === 'favorites') {
+          filteredEssays = essays.filter(e => e.badge === '❤');
+        }
+        
+        filteredEssays.forEach(essay => {
+          list.appendChild(createEssayElement(essay));
+        });
+      }
+    }
+
+    // Escape key closes modals
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+        closeMovieModal();
+      }
+    });
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      loadTheme();
+      populateBooks();
+      updateBookCount();
+      populateMovies();
+      updateMovieCount();
+      populateEssays();
+      updateEssayCount();
+    });
+  </script>
+</body>
+</html>
