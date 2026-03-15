@@ -4,218 +4,218 @@
       "title": "Moneyball",
       "author": "Michael Lewis",
       "badge": "❤",
-      "cover": "Images/moneyball.jpg"
+      "cover": "images/moneyball.jpg"
     },
     {
       "title": "Do Androids Dream of Electric Sheep?",
       "author": "Philip K. Dick",
       "badge": "❤",
-      "cover": "Images/doandroidsdreamofelectricsheep.jpg"
+      "cover": "images/doandroidsdreamofelectricsheep.jpg"
     },
     {
       "title": "The Magic Toyshop",
       "author": "Angela Carter",
-      "cover": "Images/themagictoyshop.jpg"
+      "cover": "images/themagictoyshop.jpg"
     },
     {
       "title": "The Prince",
       "author": "Niccolò Machiavelli",
-      "cover": "Images/theprince.jpg"
+      "cover": "images/theprince.jpg"
     },
     {
       "title": "The Death of Ivan Ilych",
       "author": "Leo Tolstoy",
       "badge": "❤",
-      "cover": "Images/thedeathofivanilych.jpg"
+      "cover": "images/thedeathofivanilych.jpg"
     },
     {
       "title": "Frankenstein",
       "author": "Mary Shelley",
       "badge": "❤",
-      "cover": "Images/frankenstein.jpg"
+      "cover": "images/frankenstein.jpg"
     },
     {
       "title": "All Quiet on the Western Front",
       "author": "Erich Maria Remarque",
       "badge": "❤",
-      "cover": "Images/allquietonthewesternfront.jpg"
+      "cover": "images/allquietonthewesternfront.jpg"
     },
     {
       "title": "Fight Club",
       "author": "Chuck Palahniuk",
       "badge": "❤",
-      "cover": "Images/fightclub.jpg"
+      "cover": "images/fightclub.jpg"
     },
     {
       "title": "The Hobbit",
       "author": "J.R.R. Tolkien",
       "badge": "❤",
-      "cover": "Images/thehobbit.jpg"
+      "cover": "images/thehobbit.jpg"
     },
     {
       "title": "The Lord of the Rings",
       "author": "J.R.R. Tolkien",
       "badge": "★",
-      "cover": "Images/thelordoftherings.jpg"
+      "cover": "images/thelordoftherings.jpg"
     },
     {
       "title": "Metro 2033",
       "author": "Dmitry Glukhovsky",
-      "cover": "Images/metro2033.jpg"
+      "cover": "images/metro2033.jpg"
     },
     {
       "title": "Metro 2034",
       "author": "Dmitry Glukhovsky",
-      "cover": "Images/metro2034.webp"
+      "cover": "images/metro2034.webp"
     }
   ],
   "2025": [
     {
       "title": "Metro 2035",
       "author": "Dmitry Glukhovsky",
-      "cover": "Images/metro2035.jpg"
+      "cover": "images/metro2035.jpg"
     },
     {
       "title": "The Man in the High Castle",
       "author": "Philip K. Dick",
-      "cover": "Images/themaninthehighcastle.jpg"
+      "cover": "images/themaninthehighcastle.jpg"
     },
     {
       "title": "A Clockwork Orange",
       "author": "Anthony Burgess",
-      "cover": "Images/aclockworkorange.jpg"
+      "cover": "images/aclockworkorange.jpg"
     },
     {
       "title": "The Road Back",
       "author": "Erich Maria Remarque",
-      "cover": "Images/theroadback.jpg"
+      "cover": "images/theroadback.jpg"
     },
     {
       "title": "And Every Morning the Way Home Gets Longer and Longer",
       "author": "Fredrik Backman",
-      "cover": "Images/andeverymorningthewayhomegetslongerandlonger.jpg"
+      "cover": "images/andeverymorningthewayhomegetslongerandlonger.jpg"
     },
     {
       "title": "American Psycho",
       "author": "Bret Easton Ellis",
       "badge": "❤",
-      "cover": "Images/americanpsycho.jpg"
+      "cover": "images/americanpsycho.jpg"
     },
     {
       "title": "Heart of Darkness",
       "author": "Joseph Conrad",
-      "cover": "Images/heartofdarkness.jpg"
+      "cover": "images/heartofdarkness.jpg"
     },
     {
       "title": "A Study in Scarlet",
       "author": "Arthur Conan Doyle",
       "badge": "❤",
-      "cover": "Images/astudyinscarlet.jpg"
+      "cover": "images/astudyinscarlet.jpg"
     },
     {
       "title": "The Sign of the Four",
       "author": "Arthur Conan Doyle",
       "badge": "❤",
-      "cover": "Images/thesignofthefour.jpg"
+      "cover": "images/thesignofthefour.jpg"
     },
     {
       "title": "The Hound of the Baskervilles",
       "author": "Arthur Conan Doyle",
-      "isbn": "9780140439076",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "images/thehoundofthebaskervilles.jpg"
     },
     {
       "title": "The Valley of Fear",
       "author": "Arthur Conan Doyle",
-      "cover": "Images/thevalleyoffear.jpg"
+      "cover": "images/thevalleyoffear.jpg"
     },
     {
       "title": "The Adventures of Sherlock Holmes",
       "author": "Arthur Conan Doyle",
       "badge": "❤",
-      "cover": "Images/theadventuresofsherlockholmes.jpg"
+      "cover": "images/theadventuresofsherlockholmes.jpg"
     },
     {
       "title": "The Memoirs of Sherlock Holmes",
       "author": "Arthur Conan Doyle",
       "badge": "❤",
-      "cover": "Images/thememoirsofsherlockholmes.jpg"
+      "cover": "images/thememoirsofsherlockholmes.jpg"
     },
     {
       "title": "The Return of Sherlock Holmes",
       "author": "Arthur Conan Doyle",
       "badge": "❤",
-      "cover": "Images/thereturnofsherlockholmes.jpg"
+      "cover": "images/thereturnofsherlockholmes.jpg"
     },
     {
       "title": "The Casebook of Sherlock Holmes",
       "author": "Arthur Conan Doyle",
       "badge": "❤",
-      "cover": "Images/thecasebookofsherlockholmes.jpg"
+      "cover": "images/thecasebookofsherlockholmes.jpg"
     },
     {
       "title": "His Last Bow",
       "author": "Arthur Conan Doyle",
       "badge": "❤",
-      "cover": "Images/hislastbow.jpg"
+      "cover": "images/hislastbow.jpg"
     },
     {
       "title": "The Spy and the Traitor",
       "author": "Ben Macintyre",
       "badge": "❤",
-      "cover": "Images/thespyandthetraitor.webp"
+      "cover": "images/thespyandthetraitor.webp"
     },
     {
       "title": "Marx",
       "author": "Peter Singer",
-      "cover": "Images/marx.jpg"
+      "cover": "images/marx.jpg"
     },
     {
       "title": "The Great Gatsby",
       "author": "F. Scott Fitzgerald",
-      "cover": "Images/thegreatgatsby.jpg"
+      "cover": "images/thegreatgatsby.jpg"
     },
     {
       "title": "The Arab Uprising",
       "author": "Marc Lynch",
-      "cover": "Images/thearabuprising.jpg"
+      "cover": "images/thearabuprising.jpg"
     },
     {
       "title": "Ruskin",
       "author": "George P. Landow",
-      "cover": "Images/ruskin.jpg"
+      "cover": "images/ruskin.jpg"
     },
     {
       "title": "Prisoners of Geography",
       "author": "Tim Marshall",
       "badge": "❤",
-      "cover": "Images/prisonersofgeography.jpg"
+      "cover": "images/prisonersofgeography.jpg"
     },
     {
       "title": "A Prayer for Owen Meany",
       "author": "John Irving",
-      "cover": "Images/aprayerforowenmeany.jpg"
+      "cover": "images/aprayerforowenmeany.jpg"
     },
     {
       "title": "Hillbilly Elegy",
       "author": "J.D. Vance",
-      "cover": "Images/hillbillyelegy.jpg"
+      "cover": "images/hillbillyelegy.jpg"
     },
     {
       "title": "As I Lay Dying",
       "author": "William Faulkner",
-      "cover": "Images/asilaydying.jpg"
+      "cover": "images/asilaydying.jpg"
     },
     {
       "title": "The Day of the Triffids",
       "author": "John Wyndham",
       "badge": "❤",
-      "cover": "Images/thedayofthetriffids.jpg"
+      "cover": "images/thedayofthetriffids.jpg"
     },
     {
       "title": "Next: The Future Just Happened",
       "author": "Michael Lewis",
-      "cover": "Images/nextthefuturejusthappened.jpg"
+      "cover": "images/nextthefuturejusthappened.jpg"
     }
   ],
   "2026": [
@@ -223,12 +223,12 @@
       "title": "Fiasco: The Inside Story of a Wall Street Trader",
       "author": "Frank Partnoy",
       "badge": "❤",
-      "cover": "Images/FIASCO.jpg"
+      "cover": "images/FIASCO.jpg"
     },
     {
       "title": "Beyond the Limit",
       "author": "Sid Watkins",
-      "cover": "Images/beyondthelimit.jpg"
+      "cover": "images/beyondthelimit.jpg"
     }
   ]
 }
