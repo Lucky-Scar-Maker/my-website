@@ -3,120 +3,120 @@
     {
       "title": "Moneyball",
       "author": "Michael Lewis",
-      "isbn": "9780393324815",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "Images/moneyball.jpg"
     },
     {
       "title": "Do Androids Dream of Electric Sheep?",
       "author": "Philip K. Dick",
-      "isbn": "9780345404473",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "Images/doandroidsdreamofelectricsheep.jpg"
     },
     {
       "title": "The Magic Toyshop",
       "author": "Angela Carter",
-      "isbn": "9780140168594"
+      "cover": "Images/themagictoyshop.jpg"
     },
     {
       "title": "The Prince",
       "author": "Niccolò Machiavelli",
-      "isbn": "9780140449150"
+      "cover": "Images/theprince.jpg"
     },
     {
       "title": "The Death of Ivan Ilych",
       "author": "Leo Tolstoy",
-      "isbn": "9780553210354",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "Images/thedeathofivanilych.jpg"
     },
     {
       "title": "Frankenstein",
       "author": "Mary Shelley",
-      "isbn": "9780141439471",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "Images/frankenstein.jpg"
     },
     {
       "title": "All Quiet on the Western Front",
       "author": "Erich Maria Remarque",
-      "isbn": "9780449213940",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "Images/allquietonthewesternfront.jpg"
     },
     {
       "title": "Fight Club",
       "author": "Chuck Palahniuk",
-      "isbn": "9780393327342",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "Images/fightclub.jpg"
     },
     {
       "title": "The Hobbit",
       "author": "J.R.R. Tolkien",
-      "isbn": "9780547928227",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "Images/thehobbit.jpg"
     },
     {
       "title": "The Lord of the Rings",
       "author": "J.R.R. Tolkien",
-      "isbn": "9780618640157",
-      "badge": "★"
+      "badge": "★",
+      "cover": "Images/thelordoftherings.jpg"
     },
     {
       "title": "Metro 2033",
       "author": "Dmitry Glukhovsky",
-      "isbn": "9781473204256"
+      "cover": "Images/metro2033.jpg"
     },
     {
       "title": "Metro 2034",
       "author": "Dmitry Glukhovsky",
-      "isbn": "9781473204263"
+      "cover": "Images/metro2034.webp"
     }
   ],
   "2025": [
     {
       "title": "Metro 2035",
       "author": "Dmitry Glukhovsky",
-      "isbn": "9781473212145"
+      "cover": "Images/metro2035.jpg"
     },
     {
       "title": "The Man in the High Castle",
       "author": "Philip K. Dick",
-      "isbn": "9780547572482"
+      "cover": "Images/themaninthehighcastle.jpg"
     },
     {
       "title": "A Clockwork Orange",
       "author": "Anthony Burgess",
-      "isbn": "9780393312836"
+      "cover": "Images/aclockworkorange.jpg"
     },
     {
       "title": "The Road Back",
       "author": "Erich Maria Remarque",
-      "isbn": "9780449912591"
+      "cover": "Images/theroadback.jpg"
     },
     {
       "title": "And Every Morning the Way Home Gets Longer and Longer",
       "author": "Fredrik Backman",
-      "isbn": "9781501160486"
+      "cover": "Images/andeverymorningthewayhomegetslongerandlonger.jpg"
     },
     {
       "title": "American Psycho",
       "author": "Bret Easton Ellis",
-      "isbn": "9780679735779",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "Images/americanpsycho.jpg"
     },
     {
       "title": "Heart of Darkness",
       "author": "Joseph Conrad",
-      "isbn": "9780141441672"
+      "cover": "Images/heartofdarkness.jpg"
     },
     {
       "title": "A Study in Scarlet",
       "author": "Arthur Conan Doyle",
-      "isbn": "9780140439083",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "Images/astudyinscarlet.jpg"
     },
     {
       "title": "The Sign of the Four",
       "author": "Arthur Conan Doyle",
-      "isbn": "9780140439106",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "Images/thesignofthefour.jpg"
     },
     {
       "title": "The Hound of the Baskervilles",
@@ -127,108 +127,108 @@
     {
       "title": "The Valley of Fear",
       "author": "Arthur Conan Doyle",
-      "isbn": "9780140439090"
+      "cover": "Images/thevalleyoffear.jpg"
     },
     {
       "title": "The Adventures of Sherlock Holmes",
       "author": "Arthur Conan Doyle",
-      "isbn": "9780140439113",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "Images/theadventuresofsherlockholmes.jpg"
     },
     {
       "title": "The Memoirs of Sherlock Holmes",
       "author": "Arthur Conan Doyle",
-      "isbn": "9780140439120",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "Images/thememoirsofsherlockholmes.jpg"
     },
     {
       "title": "The Return of Sherlock Holmes",
       "author": "Arthur Conan Doyle",
-      "isbn": "9780140439137",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "Images/thereturnofsherlockholmes.jpg"
     },
     {
       "title": "The Casebook of Sherlock Holmes",
       "author": "Arthur Conan Doyle",
-      "isbn": "9780140439151",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "Images/thecasebookofsherlockholmes.jpg"
     },
     {
       "title": "His Last Bow",
       "author": "Arthur Conan Doyle",
-      "isbn": "9780140439144",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "Images/hislastbow.jpg"
     },
     {
       "title": "The Spy and the Traitor",
       "author": "Ben Macintyre",
-      "isbn": "9781101904244",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "Images/thespyandthetraitor.webp"
     },
     {
       "title": "Marx",
       "author": "Peter Singer",
-      "isbn": "9780192854056"
+      "cover": "Images/marx.jpg"
     },
     {
       "title": "The Great Gatsby",
       "author": "F. Scott Fitzgerald",
-      "isbn": "9780743273565"
+      "cover": "Images/thegreatgatsby.jpg"
     },
     {
       "title": "The Arab Uprising",
       "author": "Marc Lynch",
-      "isbn": "9781610392389"
+      "cover": "Images/thearabuprising.jpg"
     },
     {
       "title": "Ruskin",
       "author": "George P. Landow",
-      "isbn": "9780192875044"
+      "cover": "Images/ruskin.jpg"
     },
     {
       "title": "Prisoners of Geography",
       "author": "Tim Marshall",
-      "isbn": "9781501121463",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "Images/prisonersofgeography.jpg"
     },
     {
       "title": "A Prayer for Owen Meany",
       "author": "John Irving",
-      "isbn": "9780062409348"
+      "cover": "Images/aprayerforowenmeany.jpg"
     },
     {
       "title": "Hillbilly Elegy",
       "author": "J.D. Vance",
-      "isbn": "9780062300546"
+      "cover": "Images/hillbillyelegy.jpg"
     },
     {
       "title": "As I Lay Dying",
       "author": "William Faulkner",
-      "isbn": "9780679732259"
+      "cover": "Images/asilaydying.jpg"
     },
     {
       "title": "The Day of the Triffids",
       "author": "John Wyndham",
-      "isbn": "9780141185415",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "Images/thedayofthetriffids.jpg"
     },
     {
       "title": "Next: The Future Just Happened",
       "author": "Michael Lewis",
-      "isbn": "9780393323528"
+      "cover": "Images/nextthefuturejusthappened.jpg"
     }
   ],
   "2026": [
     {
       "title": "Fiasco: The Inside Story of a Wall Street Trader",
       "author": "Frank Partnoy",
-      "isbn": "9780140278798",
-      "badge": "❤"
+      "badge": "❤",
+      "cover": "Images/FIASCO.jpg"
     },
     {
       "title": "Beyond the Limit",
       "author": "Sid Watkins",
-      "isbn": "9780760723029"
+      "cover": "Images/beyondthelimit.jpg"
     }
   ]
 }
