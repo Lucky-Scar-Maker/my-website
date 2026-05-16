@@ -1,0 +1,441 @@
+---
+title: Outings — Kristian Camaj
+permalink: /outings/index.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <meta name="description" content="Personal food map — everywhere I've eaten out">
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page-wrapper" id="page-wrapper">
+  <div class="container">
+    <header class="fade-in">
+      <div class="header-left">
+        <div class="site-title"><a href="/">Kristian Camaj</a></div>
+        <nav>
+          <a href="/#about">About</a>
+          <a href="/#writing">Writing</a>
+          <a href="/#shelf">Shelf</a>
+          <a href="/outings/" class="nav-current">Outings</a>
+        </nav>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
+        <span class="theme-icon">☀</span>
+      </button>
+    </header>
+
+    <section class="fade-in">
+      <h1 class="section-title">Outings</h1>
+      <div class="outings-subtitle" id="subtitle">Loading…</div>
+
+      <div class="outings-grid">
+        <div class="sidebar-column">
+          <div class="label-slash">//search//</div>
+          <input type="text" id="fs" class="outings-search" placeholder="search name or address…">
+
+          <div class="label-slash">//rating//</div>
+          <div class="filter-row">
+            <button class="filter-btn active" data-min="0">All</button>
+            <button class="filter-btn" data-min="3">3+</button>
+            <button class="filter-btn" data-min="4">4+</button>
+            <button class="filter-btn" data-min="5">5</button>
+          </div>
+
+          <div class="label-slash">//city//</div>
+          <div id="cities" class="filter-row"></div>
+
+          <div class="label-slash">//type//</div>
+          <select id="ft" class="filter-select"><option value="">All types</option></select>
+
+          <div class="label-slash">//presets//</div>
+          <div id="presets" class="preset-row"></div>
+
+          <div class="label-slash">//trends//</div>
+          <div class="chart-tabs">
+            <button class="ctab active" data-tab="monthly">Monthly</button>
+            <button class="ctab" data-tab="coverage">Postcodes</button>
+          </div>
+          <div id="monthly-chart" class="chart"></div>
+          <div id="coverage-view" style="display:none"></div>
+        </div>
+
+        <div class="map-column">
+          <div id="map"></div>
+          <div id="map-controls">
+            <button id="heat-btn" class="mc-btn" title="Toggle heatmap (rating-weighted)">🔥</button>
+            <button id="export-btn" class="mc-btn" title="Export filtered set as GeoJSON">📤</button>
+            <button id="share-btn" class="mc-btn" title="Copy shareable link">🔗</button>
+          </div>
+          <div id="loading">Loading data…</div>
+        </div>
+
+        <div class="places-column">
+          <div class="label-slash" style="margin-top:0">//places//</div>
+          <div class="sort-row">
+            <span id="fc">–</span>
+            <select id="ss">
+              <option value="d-d">Newest</option>
+              <option value="d-a">Oldest</option>
+              <option value="r-d">Top rated</option>
+              <option value="r-a">Worst</option>
+              <option value="n-a">A→Z</option>
+            </select>
+            <button id="dice" title="Random pick">🎲</button>
+          </div>
+          <div id="list" class="places-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+    </footer>
+
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</button>
+    <div id="outings-toast"></div>
+  </div>
+  </div>
+
+  <script>
+    // Outings data injected at build time
+    const OUTINGS_DATA = {{ outings | dump | safe }};
+
+    // Theme toggle (shared with home page via localStorage key 'theme')
+    function toggleTheme() {
+      const wrapper = document.getElementById('page-wrapper');
+      const isDark = wrapper.classList.contains('dark-mode');
+      if (isDark) {
+        wrapper.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+        document.querySelector('.theme-icon').textContent = '☀';
+      } else {
+        wrapper.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+        document.querySelector('.theme-icon').textContent = '☽';
+      }
+      if (heatOn) updateHeat();
+    }
+    function loadTheme() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      if (savedTheme === 'dark') {
+        document.getElementById('page-wrapper').classList.add('dark-mode');
+      }
+      document.querySelector('.theme-icon').textContent = savedTheme === 'dark' ? '☽' : '☀';
+    }
+
+    // Scroll to top
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    window.addEventListener('scroll', () => {
+      document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 500);
+    });
+
+    // State
+    let D = [], fType = '', fMin = 0, fSearch = '', fCity = '', sortM = 'd-d', activePreset = '';
+    let heatLayer = null, heatOn = false, chartTab = 'monthly';
+
+    const map = L.map('map', { zoomControl: true }).setView([51.51, -0.12], 12);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '© OSM © CARTO', subdomains: 'abcd', maxZoom: 19
+    }).addTo(map);
+
+    function st(r) { let s = ''; for (let i = 1; i <= 5; i++) { if (i <= Math.floor(r)) s += '★'; else if (i - 0.5 <= r) s += '½'; else s += '☆'; } return s; }
+    function fd(d) { if (!d) return ''; return new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }); }
+    function getCity(a) {
+      if (a.includes('Albania') || a.includes('Tiranë') || a.includes('Shkodër')) return 'Albania';
+      if (a.includes('Paris')) return 'Paris';
+      if (a.includes('York') && !a.includes('London')) return 'York';
+      if (a.includes('Leeds')) return 'Leeds';
+      return 'London';
+    }
+    function getPostcode(addr) { if (!addr) return null; const m = addr.match(/\b([A-Z]{1,2}\d{1,2}[A-Z]?)\s+\d[A-Z]{2}\b/); return m ? m[1] : null; }
+
+    // URL hash for shareable state
+    function encodeHash() {
+      const p = new URLSearchParams();
+      if (activePreset) p.set('preset', activePreset);
+      else {
+        if (fType) p.set('type', fType);
+        if (fMin) p.set('min', fMin);
+        if (fCity) p.set('city', fCity);
+        if (fSearch) p.set('q', fSearch);
+        if (sortM !== 'd-d') p.set('sort', sortM);
+      }
+      if (heatOn) p.set('heat', '1');
+      const h = p.toString();
+      history.replaceState(null, null, h ? '#' + h : location.pathname);
+    }
+    function decodeHash() {
+      if (!location.hash || location.hash === '#') return;
+      const p = new URLSearchParams(location.hash.slice(1));
+      if (p.has('heat')) { heatOn = true; setTimeout(() => document.getElementById('heat-btn').classList.add('on'), 0); }
+      if (p.has('preset')) { applyPreset(p.get('preset'), true); return; }
+      if (p.has('type')) { fType = p.get('type'); document.getElementById('ft').value = fType; }
+      if (p.has('min')) { fMin = +p.get('min'); document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', +b.dataset.min === fMin)); }
+      if (p.has('city')) { fCity = p.get('city'); setTimeout(() => document.querySelectorAll('.cb').forEach(b => b.classList.toggle('active', b.dataset.c === fCity)), 50); }
+      if (p.has('q')) { fSearch = p.get('q'); document.getElementById('fs').value = fSearch; }
+      if (p.has('sort')) { sortM = p.get('sort'); document.getElementById('ss').value = sortM; }
+    }
+
+    const PRESETS = [
+      { id: 'top5', label: '★ Top 5', filter: d => d.rating === 5, sort: 'r-d' },
+      { id: 'bakeries', label: 'Bakeries', filter: d => ['Bakery', 'Patisserie', 'Biscuit Shop'].includes(d.type) && d.rating >= 4, sort: 'r-d' },
+      { id: 'e17', label: 'E17', filter: d => d.address.includes('E17'), sort: 'r-d' },
+      { id: 'pubs', label: 'Pubs', filter: d => d.type === 'Pub' && d.rating >= 4, sort: 'r-d' },
+      { id: 'michelin', label: '★ Michelin', filter: d => d.michelin, sort: 'r-d' },
+      { id: 'avoid', label: 'Skip', filter: d => d.rating <= 3, sort: 'r-a' },
+      { id: 'recent', label: '30 days', filter: d => { const t = new Date(); t.setDate(t.getDate() - 30); return new Date(d.date + 'T00:00:00') >= t; }, sort: 'd-d' },
+    ];
+
+    function applyPreset(id, skipHash) {
+      if (activePreset === id) { activePreset = ''; clearFilters(); return; }
+      activePreset = id; fType = ''; fMin = 0; fSearch = ''; fCity = '';
+      document.getElementById('ft').value = ''; document.getElementById('fs').value = '';
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', +b.dataset.min === 0));
+      document.querySelectorAll('.cb').forEach(b => b.classList.toggle('active', !b.dataset.c));
+      document.querySelectorAll('.preset-btn').forEach(b => b.classList.toggle('active', b.dataset.id === id));
+      if (!skipHash) encodeHash();
+      render();
+      const vis = getF(); if (vis.length) map.fitBounds(L.featureGroup(vis.map(d => d.marker)).getBounds().pad(0.15));
+    }
+    function clearFilters() {
+      fType = ''; fMin = 0; fSearch = ''; fCity = ''; sortM = 'd-d'; activePreset = '';
+      document.getElementById('ft').value = ''; document.getElementById('fs').value = ''; document.getElementById('ss').value = 'd-d';
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', +b.dataset.min === 0));
+      document.querySelectorAll('.cb').forEach(b => b.classList.toggle('active', !b.dataset.c));
+      document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+      encodeHash(); render();
+      if (D.length) map.fitBounds(L.featureGroup(D.map(d => d.marker)).getBounds().pad(0.1));
+    }
+
+    // Heatmap
+    function updateHeat() {
+      if (heatLayer) { map.removeLayer(heatLayer); heatLayer = null; }
+      if (!heatOn) return;
+      const items = getF();
+      if (!items.length) return;
+      const pts = items.map(d => [d.lat, d.lng, Math.max(0.2, d.rating / 5)]);
+      const isDark = document.getElementById('page-wrapper').classList.contains('dark-mode');
+      heatLayer = L.heatLayer(pts, {
+        radius: 28, blur: 22, maxZoom: 17, minOpacity: 0.4, max: 1,
+        gradient: isDark
+          ? { 0.2: '#1a5c1a', 0.5: '#4ade4a', 0.8: '#a4ff4a', 1: '#fff' }
+          : { 0.2: '#1a5c1a', 0.5: '#2d8a2d', 0.8: '#4ade4a', 1: '#a4ff4a' }
+      }).addTo(map);
+    }
+    function toggleHeat() { heatOn = !heatOn; document.getElementById('heat-btn').classList.toggle('on', heatOn); updateHeat(); encodeHash(); }
+
+    // GeoJSON export
+    function exportGeoJSON() {
+      const items = getF();
+      if (!items.length) { showOutingsToast('Nothing to export'); return; }
+      const fc = {
+        type: 'FeatureCollection',
+        features: items.map(d => ({
+          type: 'Feature',
+          geometry: { type: 'Point', coordinates: [d.lng, d.lat] },
+          properties: { name: d.name, type: d.type, address: d.address, rating: d.rating, date: d.date, michelin: d.michelin, city: d.city }
+        }))
+      };
+      const blob = new Blob([JSON.stringify(fc, null, 2)], { type: 'application/geo+json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      const stamp = new Date().toISOString().slice(0, 10);
+      a.href = url; a.download = `outings-${stamp}-${items.length}places.geojson`;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1500);
+      showOutingsToast(`Exported ${items.length} places`);
+    }
+
+    // Coverage tab
+    function buildCoverage() {
+      const items = getF();
+      const counts = {};
+      items.forEach(d => { const pc = getPostcode(d.address); if (pc) counts[pc] = (counts[pc] || 0) + 1; });
+      const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 8);
+      const t = document.getElementById('coverage-view');
+      if (!sorted.length) { t.innerHTML = '<div class="cov-empty">No UK postcodes in filter</div>'; return; }
+      const max = sorted[0][1];
+      t.innerHTML = sorted.map(([pc, n]) => `<div class="cov-row" data-pc="${pc}"><div class="cov-label">${pc}</div><div class="cov-bar-wrap"><div class="cov-bar" style="width:${n / max * 100}%"></div></div><div class="cov-count">${n}</div></div>`).join('');
+    }
+    function setChartTab(tab) {
+      chartTab = tab;
+      document.querySelectorAll('.ctab').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+      document.getElementById('monthly-chart').style.display = tab === 'monthly' ? 'flex' : 'none';
+      document.getElementById('coverage-view').style.display = tab === 'coverage' ? 'block' : 'none';
+      if (tab === 'coverage') buildCoverage();
+    }
+
+    // Monthly chart
+    function buildChart() {
+      const months = {};
+      D.forEach(d => { if (d.date) { const m = d.date.slice(0, 7); months[m] = (months[m] || 0) + 1; } });
+      const keys = Object.keys(months).sort();
+      const max = Math.max(...Object.values(months));
+      document.getElementById('monthly-chart').innerHTML = keys.map(k => {
+        const v = months[k], h = Math.max(4, v / max * 45);
+        const label = new Date(k + '-01T00:00:00').toLocaleDateString('en-GB', { month: 'short' }).toUpperCase();
+        return `<div class="bar-col"><div class="bar-val">${v}</div><div class="bar" style="height:${h}px"></div><div class="bar-label">${label}</div></div>`;
+      }).join('');
+    }
+
+    // Init
+    function init(data) {
+      D = data;
+      D.forEach(item => {
+        item.city = getCity(item.address);
+        const icon = L.divIcon({
+          className: 'mk-dot',
+          html: `<div style="width:10px;height:10px;border-radius:50%;background:var(--fg);box-shadow:0 0 0 1.5px var(--bg)"></div>`,
+          iconSize: [10, 10], iconAnchor: [5, 5], popupAnchor: [0, -6]
+        });
+        const m = L.marker([item.lat, item.lng], { icon });
+        const mic = item.michelin;
+        let popup = `<div class="pn">${item.name}</div><div class="pt">${item.type}${item.city ? ' · ' + item.city : ''}</div><div class="pr">${st(item.rating)} ${item.rating}</div><div class="pd">${fd(item.date)}</div><div class="pa">${item.address}</div>`;
+        if (mic) popup += `<div class="pm">★ Michelin starred</div>`;
+        popup += `<a class="pg" href="https://www.google.com/maps/search/?api=1&query=${item.lat},${item.lng}" target="_blank" rel="noopener">Google Maps →</a>`;
+        m.bindPopup(popup, { maxWidth: 260 });
+        item.marker = m;
+      });
+
+      document.getElementById('subtitle').textContent = `${D.length} places`;
+
+      const types = [...new Set(D.map(d => d.type))].sort();
+      const ts = document.getElementById('ft');
+      types.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; ts.appendChild(o); });
+
+      const cities = [...new Set(D.map(d => d.city))].sort();
+      document.getElementById('cities').innerHTML = '<button class="cb active" data-c="">All</button>' + cities.map(c => `<button class="cb" data-c="${c}">${c} (${D.filter(d => d.city === c).length})</button>`).join('');
+
+      document.getElementById('presets').innerHTML = PRESETS.map(p => `<button class="preset-btn" data-id="${p.id}">${p.label}</button>`).join('');
+
+      buildChart();
+      document.getElementById('loading').classList.add('hidden');
+      decodeHash();
+      render();
+      if (!location.hash || location.hash === '#') map.fitBounds(L.featureGroup(D.map(d => d.marker)).getBounds().pad(0.1));
+    }
+
+    function getSorter(mode) {
+      return (a, b) => {
+        switch (mode) {
+          case 'd-d': return b.date.localeCompare(a.date);
+          case 'd-a': return a.date.localeCompare(b.date);
+          case 'r-d': return b.rating - a.rating || b.date.localeCompare(a.date);
+          case 'r-a': return a.rating - b.rating;
+          case 'n-a': return a.name.localeCompare(b.name);
+          default: return 0;
+        }
+      };
+    }
+    function getF() {
+      let items = [...D];
+      if (activePreset) {
+        const p = PRESETS.find(x => x.id === activePreset);
+        if (p) { items = items.filter(p.filter); items.sort(getSorter(p.sort)); }
+        return items;
+      }
+      if (fType) items = items.filter(d => d.type === fType);
+      if (fMin > 0) items = items.filter(d => d.rating >= fMin);
+      if (fCity) items = items.filter(d => d.city === fCity);
+      if (fSearch) {
+        const q = fSearch.toLowerCase();
+        items = items.filter(d => d.name.toLowerCase().includes(q) || d.address.toLowerCase().includes(q) || d.type.toLowerCase().includes(q));
+      }
+      items.sort(getSorter(sortM));
+      return items;
+    }
+    function render() {
+      const items = getF();
+      document.getElementById('fc').textContent = `${items.length} places`;
+      D.forEach(d => { if (d.marker) { const v = items.includes(d); if (v && !map.hasLayer(d.marker)) d.marker.addTo(map); if (!v && map.hasLayer(d.marker)) map.removeLayer(d.marker); } });
+      document.getElementById('list').innerHTML = items.map(item => `<div class="li" onclick="sel(${D.indexOf(item)})"><div class="li-top"><div class="li-name">${item.name}${item.michelin ? ' <span class="mic">★</span>' : ''}</div><div class="li-rating">${item.rating}</div></div><div class="li-meta">${item.type} · ${fd(item.date)}${item.michelin ? ' · MICHELIN' : ''}</div></div>`).join('');
+      if (heatOn) updateHeat();
+      if (chartTab === 'coverage') buildCoverage();
+      encodeHash();
+    }
+    function sel(i) {
+      const item = D[i]; if (!item || !item.marker) return;
+      map.setView([item.lat, item.lng], 16, { animate: true });
+      item.marker.openPopup();
+      document.querySelectorAll('.li').forEach(el => el.classList.remove('on'));
+      const els = document.querySelectorAll('.li');
+      const idx = getF().indexOf(item);
+      if (idx >= 0 && els[idx]) { els[idx].classList.add('on'); els[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+    }
+
+    function randomPick() {
+      const items = getF(); if (!items.length) return;
+      const dice = document.getElementById('dice');
+      dice.classList.remove('spin'); void dice.offsetWidth; dice.classList.add('spin');
+      const pick = items[Math.floor(Math.random() * items.length)];
+      setTimeout(() => {
+        sel(D.indexOf(pick));
+        const els = document.querySelectorAll('.li');
+        const fi = getF().indexOf(pick);
+        if (fi >= 0 && els[fi]) { els[fi].classList.add('flash'); setTimeout(() => els[fi].classList.remove('flash'), 700); }
+      }, 300);
+    }
+
+    function showOutingsToast(msg) {
+      const t = document.getElementById('outings-toast');
+      t.textContent = msg; t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
+    function copyLink() {
+      encodeHash();
+      navigator.clipboard.writeText(location.href).then(() => showOutingsToast('Link copied')).catch(() => showOutingsToast('Copy failed'));
+    }
+
+    // Wire events
+    document.getElementById('ft').onchange = e => { fType = e.target.value; activePreset = ''; document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active')); render(); };
+    document.getElementById('fs').oninput = e => { fSearch = e.target.value; activePreset = ''; document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active')); render(); };
+    document.getElementById('ss').onchange = e => { sortM = e.target.value; render(); };
+    document.querySelectorAll('.filter-btn').forEach(b => b.onclick = () => {
+      document.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active'));
+      b.classList.add('active'); fMin = +b.dataset.min; activePreset = '';
+      document.querySelectorAll('.preset-btn').forEach(x => x.classList.remove('active')); render();
+    });
+    document.getElementById('cities').onclick = e => {
+      if (!e.target.classList.contains('cb')) return;
+      document.querySelectorAll('.cb').forEach(x => x.classList.remove('active'));
+      e.target.classList.add('active'); fCity = e.target.dataset.c; activePreset = '';
+      document.querySelectorAll('.preset-btn').forEach(x => x.classList.remove('active'));
+      render();
+      if (fCity) { const g = D.filter(d => d.city === fCity && map.hasLayer(d.marker)); if (g.length) map.fitBounds(L.featureGroup(g.map(d => d.marker)).getBounds().pad(0.15)); }
+      else { const all = D.filter(d => map.hasLayer(d.marker)); if (all.length) map.fitBounds(L.featureGroup(all.map(d => d.marker)).getBounds().pad(0.1)); }
+    };
+    document.getElementById('presets').onclick = e => { const btn = e.target.closest('.preset-btn'); if (btn) applyPreset(btn.dataset.id); };
+    document.getElementById('dice').onclick = randomPick;
+    document.getElementById('share-btn').onclick = copyLink;
+    document.getElementById('heat-btn').onclick = toggleHeat;
+    document.getElementById('export-btn').onclick = exportGeoJSON;
+    document.querySelectorAll('.ctab').forEach(b => b.onclick = () => setChartTab(b.dataset.tab));
+    document.getElementById('coverage-view').onclick = e => {
+      const row = e.target.closest('.cov-row'); if (!row) return;
+      const pc = row.dataset.pc;
+      fSearch = pc; document.getElementById('fs').value = pc; activePreset = '';
+      document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+      render();
+      const items = getF(); if (items.length) map.fitBounds(L.featureGroup(items.map(d => d.marker)).getBounds().pad(0.2));
+    };
+    window.onhashchange = () => { activePreset = ''; document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active')); decodeHash(); render(); };
+
+    // Boot
+    loadTheme();
+    init(OUTINGS_DATA);
+  </script>
+</body>
+</html>

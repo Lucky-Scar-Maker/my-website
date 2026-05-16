@@ -23,6 +23,7 @@ title: Kristian Camaj
           <a href="#about">About</a>
           <a href="#writing">Writing</a>
           <a href="#shelf">Shelf</a>
+          <a href="/outings/">Outings</a>
         </nav>
       </div>
       <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
@@ -128,6 +129,24 @@ title: Kristian Camaj
         
         <ul class="essays-list" id="essays-list"></ul>
       </div>
+    </section>
+
+    <section class="outings-teaser fade-in" id="recent-outings">
+      <div class="teaser-head">
+        <h2 class="section-title" style="margin-bottom:0;padding-bottom:0;border-bottom:none">Recent Outings</h2>
+        <a href="/outings/" class="teaser-link">View all {{ outings | length }} →</a>
+      </div>
+      <ul>
+        {%- set sorted = outings | sort(true, true, 'date') -%}
+        {%- for item in sorted -%}
+          {%- if loop.index0 < 4 %}
+          <li>
+            <span class="teaser-name">{{ item.name }}{% if item.michelin %} <span class="essay-badge star">★</span>{% endif %}</span>
+            <span class="teaser-meta">{{ item.type }} · {{ item.rating }}★ · {{ item.date }}</span>
+          </li>
+          {%- endif -%}
+        {%- endfor %}
+      </ul>
     </section>
 
     <footer>
