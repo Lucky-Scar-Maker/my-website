@@ -949,3 +949,49 @@ nav a.nav-current { font-weight: 700; background: var(--fg); color: var(--bg); p
 .outings-teaser li:last-child { border-bottom: none; }
 .outings-teaser .teaser-name { font-weight: 600; }
 .outings-teaser .teaser-meta { font-size: 11px; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* ============================================================
+ * LIBRARY TAB — 4th tab in Shelf section
+ * Inventory table of books owned + read-status tracking.
+ * Uses --fg / --bg / --card / --hover (defined above for Outings).
+ * ============================================================ */
+
+.library-stats { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 14px; opacity: 0.85; }
+.library-progress-wrap { height: 8px; background: var(--card); border: 1px solid var(--fg); margin-bottom: 28px; position: relative; }
+.library-progress-fill { height: 100%; background: var(--fg); transition: width 0.4s ease; }
+.library-progress-label { position: absolute; right: 0; top: -16px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.7; font-variant-numeric: tabular-nums; }
+
+.library-controls { display: flex; gap: 8px; align-items: center; margin-bottom: 14px; flex-wrap: wrap; }
+.library-controls-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.7; }
+.library-filter-pill { font-family: inherit; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; background: none; border: 1px solid var(--fg); color: var(--fg); padding: 4px 10px; cursor: pointer; transition: all 0.15s ease; }
+.library-filter-pill:hover { background: var(--fg); color: var(--bg); }
+.library-filter-pill.active { background: var(--fg); color: var(--bg); font-weight: 700; }
+.library-search { font-family: inherit; font-size: 12px; padding: 6px 10px; background: var(--card); border: 1px solid var(--fg); color: var(--fg); outline: none; flex: 1; min-width: 160px; }
+.library-search::placeholder { color: var(--fg); opacity: 0.5; }
+.library-search:focus { background: var(--bg); }
+.library-sort { font-family: inherit; font-size: 11px; padding: 4px 8px; background: var(--card); border: 1px solid var(--fg); color: var(--fg); outline: none; }
+
+.library-row { display: grid; grid-template-columns: 24px 1fr 200px 90px; gap: 12px; padding: 7px 6px; border-bottom: 1px dashed var(--fg); font-size: 12px; align-items: baseline; transition: background 0.12s; }
+.library-row:hover { background: var(--card); }
+.library-row.unread { opacity: 0.78; }
+.library-row .library-chk { font-size: 14px; font-weight: 700; line-height: 1; }
+.library-row .library-title { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.library-row .library-author { font-size: 11px; opacity: 0.75; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.library-row .library-wc { font-size: 10px; text-align: right; font-variant-numeric: tabular-nums; opacity: 0.7; letter-spacing: 0.02em; }
+
+.library-legend { margin-top: 16px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.6; display: flex; justify-content: space-between; }
+
+.library-author-section { margin-top: 28px; border-top: 1px solid var(--fg); padding-top: 16px; }
+.library-author-title { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; opacity: 0.7; margin-bottom: 12px; }
+.library-author-row { display: grid; grid-template-columns: 160px 1fr 60px; gap: 10px; align-items: center; font-size: 11px; padding: 4px 0; }
+.library-author-name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.library-author-bar-wrap { position: relative; height: 8px; background: var(--card); border: 1px solid var(--fg); }
+.library-author-bar-owned { position: absolute; top: 0; left: 0; height: 100%; background: var(--fg); opacity: 0.25; }
+.library-author-bar-read { position: absolute; top: 0; left: 0; height: 100%; background: var(--fg); }
+.library-author-count { font-size: 10px; text-align: right; font-variant-numeric: tabular-nums; opacity: 0.7; }
+
+@media (max-width: 600px) {
+  .library-row { grid-template-columns: 20px 1fr 70px; }
+  .library-row .library-author { display: none; }
+  .library-author-row { grid-template-columns: 110px 1fr 50px; }
+}

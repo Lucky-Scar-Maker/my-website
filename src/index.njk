@@ -68,6 +68,7 @@ title: Kristian Camaj
         <button class="shelf-tab active" onclick="switchTab('books')">Bookshelf</button>
         <button class="shelf-tab" onclick="switchTab('movies')">Movie Shelf</button>
         <button class="shelf-tab" onclick="switchTab('essays')">Long Reads</button>
+        <button class="shelf-tab" onclick="switchTab('library')">Library</button>
       </div>
 
       <div class="tab-content active" id="tab-books">
@@ -129,6 +130,42 @@ title: Kristian Camaj
         
         <ul class="essays-list" id="essays-list"></ul>
       </div>
+
+      <div class="tab-content" id="tab-library">
+        <div class="library-stats" id="library-stats">Loading…</div>
+        <div class="library-progress-wrap">
+          <div class="library-progress-fill" id="library-progress-fill" style="width:0%"></div>
+          <div class="library-progress-label" id="library-progress-label"></div>
+        </div>
+
+        <div class="library-controls">
+          <span class="library-controls-label">Filter:</span>
+          <button class="library-filter-pill active" onclick="filterLibrary('all')">All (<span id="library-count-all">–</span>)</button>
+          <button class="library-filter-pill" onclick="filterLibrary('read')">▣ Read (<span id="library-count-read">–</span>)</button>
+          <button class="library-filter-pill" onclick="filterLibrary('unread')">□ Unread (<span id="library-count-unread">–</span>)</button>
+          <input type="text" id="library-search" class="library-search" placeholder="search title or author…" oninput="searchLibrary()">
+          <select class="library-sort" onchange="sortLibrary(this.value)">
+            <option value="title">A → Z</option>
+            <option value="author">Author A → Z</option>
+            <option value="length-desc">Length ↓</option>
+            <option value="length-asc">Length ↑</option>
+            <option value="read-first">Read first</option>
+            <option value="unread-first">Unread first</option>
+          </select>
+        </div>
+
+        <div id="library-list"></div>
+
+        <div class="library-legend">
+          <span>▣ READ &nbsp;&nbsp;&nbsp; □ UNREAD</span>
+          <span id="library-shown">Showing 269 / 269</span>
+        </div>
+
+        <div class="library-author-section">
+          <div class="library-author-title">// top authors // bars = books owned · solid = read</div>
+          <div id="library-authors"></div>
+        </div>
+      </div>
     </section>
 
     <section class="outings-teaser fade-in" id="recent-outings">
@@ -183,6 +220,7 @@ title: Kristian Camaj
     const books = {{ books | dump | safe }};
     const movies = {{ movies | dump | safe }};
     const essays = {{ essays | dump | safe }};
+    const library = {{ library | dump | safe }};
 
     // Theme toggle
     function toggleTheme() {
@@ -662,6 +700,95 @@ title: Kristian Camaj
       }
     }
 
+    // === LIBRARY ===
+    let librarySort = 'title';
+    let libraryFilter = 'all';
+    let librarySearch = '';
+
+    function libraryFilteredSorted() {
+      let arr = library.slice();
+      if (libraryFilter === 'read') arr = arr.filter(b => b.read);
+      else if (libraryFilter === 'unread') arr = arr.filter(b => !b.read);
+      if (librarySearch) {
+        const q = librarySearch.toLowerCase();
+        arr = arr.filter(b => (b.title || '').toLowerCase().includes(q) || (b.author || '').toLowerCase().includes(q));
+      }
+      const sorters = {
+        'title': (a, b) => (a.title || '').localeCompare(b.title || ''),
+        'author': (a, b) => (a.author || '').localeCompare(b.author || '') || (a.title || '').localeCompare(b.title || ''),
+        'length-desc': (a, b) => (b.wordCount || 0) - (a.wordCount || 0),
+        'length-asc': (a, b) => (a.wordCount || 0) - (b.wordCount || 0),
+        'read-first': (a, b) => (b.read - a.read) || (a.title || '').localeCompare(b.title || ''),
+        'unread-first': (a, b) => (a.read - b.read) || (a.title || '').localeCompare(b.title || ''),
+      };
+      arr.sort(sorters[librarySort] || sorters['title']);
+      return arr;
+    }
+
+    function escapeHtml(s) {
+      return (s || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+
+    function renderLibrary() {
+      const list = document.getElementById('library-list');
+      const items = libraryFilteredSorted();
+      list.innerHTML = items.map(b => `<div class="library-row${b.read ? '' : ' unread'}"><div class="library-chk">${b.read ? '▣' : '□'}</div><div class="library-title">${escapeHtml(b.title)}</div><div class="library-author">${escapeHtml(b.author)}</div><div class="library-wc">${b.wordCount ? b.wordCount.toLocaleString() : '—'}</div></div>`).join('');
+      document.getElementById('library-shown').textContent = `Showing ${items.length} / ${library.length}`;
+    }
+
+    function filterLibrary(type) {
+      libraryFilter = type;
+      document.querySelectorAll('#tab-library .library-filter-pill').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      renderLibrary();
+    }
+
+    function searchLibrary() {
+      librarySearch = document.getElementById('library-search').value;
+      renderLibrary();
+    }
+
+    function sortLibrary(value) {
+      librarySort = value;
+      renderLibrary();
+    }
+
+    function populateLibraryStats() {
+      const total = library.length;
+      const read = library.filter(b => b.read).length;
+      const unread = total - read;
+      const totalWords = library.reduce((s, b) => s + (b.wordCount || 0), 0);
+      const readWords = library.filter(b => b.read).reduce((s, b) => s + (b.wordCount || 0), 0);
+      const pctVolume = totalWords ? (readWords / totalWords * 100) : 0;
+
+      document.getElementById('library-stats').textContent =
+        `${total} OWNED · ${read} READ · ${(totalWords / 1e6).toFixed(1)}M WORDS · ${pctVolume.toFixed(1)}% READ BY VOLUME`;
+      document.getElementById('library-progress-fill').style.width = pctVolume + '%';
+      document.getElementById('library-progress-label').textContent =
+        `▣ ${(readWords / 1e6).toFixed(2)}M / □ ${((totalWords - readWords) / 1e6).toFixed(2)}M`;
+
+      document.getElementById('library-count-all').textContent = total;
+      document.getElementById('library-count-read').textContent = read;
+      document.getElementById('library-count-unread').textContent = unread;
+    }
+
+    function populateLibraryAuthors() {
+      const counts = {};
+      library.forEach(b => {
+        if (!b.author) return;
+        if (!counts[b.author]) counts[b.author] = { total: 0, read: 0 };
+        counts[b.author].total++;
+        if (b.read) counts[b.author].read++;
+      });
+      const sorted = Object.entries(counts).sort((a, b) => b[1].total - a[1].total).slice(0, 8);
+      if (!sorted.length) return;
+      const max = sorted[0][1].total;
+      const container = document.getElementById('library-authors');
+      container.innerHTML = sorted.map(([author, v]) =>
+        `<div class="library-author-row"><div class="library-author-name">${escapeHtml(author)}</div><div class="library-author-bar-wrap"><div class="library-author-bar-owned" style="width:${v.total / max * 100}%"></div><div class="library-author-bar-read" style="width:${v.read / max * 100}%"></div></div><div class="library-author-count">${v.read} / ${v.total}</div></div>`
+      ).join('');
+    }
+
     // Escape key closes modals
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
@@ -679,6 +806,9 @@ title: Kristian Camaj
       updateMovieCount();
       populateEssays();
       updateEssayCount();
+      populateLibraryStats();
+      populateLibraryAuthors();
+      renderLibrary();
     });
   </script>
 </body>
