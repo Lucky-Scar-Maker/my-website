@@ -1,5 +1,5 @@
 {
-  "name": "drew-site",
+  "name": "kristiancamaj-website",
   "version": "1.0.0",
   "scripts": {
     "build": "npx @11ty/eleventy",
