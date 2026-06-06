@@ -1,14 +1,14 @@
 [
   {
-    "name": "Fair Shot Café",
-    "type": "Café",
-    "cuisine": null,
-    "address": "3 Slingsby Pl, London WC2E 9AB",
-    "rating": 4.5,
-    "date": "2026-05-20",
+    "name": "Diyarbakir Kitchen",
+    "type": "Restaurant",
+    "cuisine": "Turkish",
+    "address": "52-53 Grand Parade, Green Lanes, Harringay Ladder, London N4 1AG",
+    "rating": 4.0,
+    "date": "2026-06-04",
     "michelin": false,
-    "lat": 51.512648,
-    "lng": -0.126374
+    "lat": 51.579164,
+    "lng": -0.098858
   },
   {
     "name": "St James Treats",
@@ -33,37 +33,37 @@
     "lng": 0.021781
   },
   {
-    "name": "Route Strand",
-    "type": "Café",
+    "name": "Primo Piatto",
+    "type": "Restaurant",
     "cuisine": "Italian",
-    "address": "Ground Floor, 146 Strand, London WC2R 1JD",
-    "rating": 3.5,
-    "date": "2026-05-19",
-    "michelin": false,
-    "lat": 51.511466,
-    "lng": -0.11828
-  },
-  {
-    "name": "Bagel Factory",
-    "type": "Bagel Shop",
-    "cuisine": null,
-    "address": "78 Long Acre, London WC2E 9NG",
-    "rating": 3.5,
-    "date": "2026-05-19",
-    "michelin": false,
-    "lat": 51.51452,
-    "lng": -0.122536
-  },
-  {
-    "name": "Czer",
-    "type": "Deli",
-    "cuisine": null,
-    "address": "33 N Row, London W1K 6DE",
+    "address": "Honey Ln, Waltham Abbey EN9 3QT",
     "rating": 4.5,
-    "date": "2026-05-19",
+    "date": "2026-06-03",
     "michelin": false,
-    "lat": 51.513269,
-    "lng": -0.154208
+    "lat": 51.678614,
+    "lng": 0.042416
+  },
+  {
+    "name": "% ARABICA",
+    "type": "Coffee Shop",
+    "cuisine": null,
+    "address": "5 King St, London WC2E 8HN",
+    "rating": 4.0,
+    "date": "2026-06-03",
+    "michelin": false,
+    "lat": 51.511528,
+    "lng": -0.124403
+  },
+  {
+    "name": "Mila",
+    "type": "Restaurant",
+    "cuisine": "Turkish",
+    "address": "House 112, Connaught, 120 High Rd, Loughton IG10 4HJ",
+    "rating": 3.5,
+    "date": "2026-06-01",
+    "michelin": false,
+    "lat": 51.644784,
+    "lng": 0.052155
   },
   {
     "name": "Amelia",
@@ -88,37 +88,37 @@
     "lng": -0.1227939
   },
   {
-    "name": "Esquires",
-    "type": "Café",
-    "cuisine": null,
-    "address": "243 High Rd, Loughton IG10 1AD",
+    "name": "Durak Tantuni",
+    "type": "Restaurant",
+    "cuisine": "Turkish",
+    "address": "390 W Green Rd, London N15 3PX",
     "rating": 4.0,
-    "date": "2026-05-18",
+    "date": "2026-06-01",
     "michelin": false,
-    "lat": 51.647858,
-    "lng": 0.055836
+    "lat": 51.58653,
+    "lng": -0.095058
   },
   {
-    "name": "Roe",
-    "type": "Restaurant",
-    "cuisine": "British",
-    "address": "One Park Drive, 5 Park Dr, Canary Wharf Estate, London E14 9GG",
-    "rating": 4.0,
-    "date": "2026-05-17",
+    "name": "Aether Coffee Lab",
+    "type": "Coffee Shop",
+    "cuisine": null,
+    "address": "11 Park Dr, Canary Wharf Estate, London E14 9GG",
+    "rating": 5.0,
+    "date": "2026-05-31",
     "michelin": false,
     "lat": 51.502111,
     "lng": -0.015037
   },
   {
-    "name": "Hagen Espresso Bar",
-    "type": "Coffee Shop",
+    "name": "ACE Pizza",
+    "type": "Pizza Restaurant",
     "cuisine": null,
-    "address": "Unit 2, YY, Canary Wharf Estate, London E14 5EZ",
+    "address": "126-128 Lauriston Rd, London E9 7LH",
     "rating": 4.0,
-    "date": "2026-05-17",
+    "date": "2026-05-31",
     "michelin": false,
-    "lat": 51.504316,
-    "lng": -0.020446
+    "lat": 51.537108,
+    "lng": -0.044892
   },
   {
     "name": "Vivaldi",
@@ -132,37 +132,37 @@
     "lng": 0.0560345
   },
   {
-    "name": "Joice",
+    "name": "Fair Shot Café",
     "type": "Café",
-    "cuisine": "Turkish",
-    "address": "141 High St., London E11 2RL",
-    "rating": 3.5,
-    "date": "2026-05-17",
+    "cuisine": null,
+    "address": "3 Slingsby Pl, London WC2E 9AB",
+    "rating": 4.5,
+    "date": "2026-05-20",
     "michelin": false,
-    "lat": 51.576546,
-    "lng": 0.027951
+    "lat": 51.512648,
+    "lng": -0.126374
   },
   {
-    "name": "Blondies Kitchen",
-    "type": "Biscuit Shop",
-    "cuisine": null,
-    "address": "11 The Piazza, London WC2E 8HD",
-    "rating": 4.0,
-    "date": "2026-05-14",
+    "name": "Route Strand",
+    "type": "Café",
+    "cuisine": "Italian",
+    "address": "Ground Floor, 146 Strand, London WC2R 1JD",
+    "rating": 3.5,
+    "date": "2026-05-19",
     "michelin": false,
-    "lat": 51.512061,
-    "lng": -0.122965
+    "lat": 51.511466,
+    "lng": -0.11828
   },
   {
-    "name": "Hagen",
-    "type": "Coffee Shop",
+    "name": "Bagel Factory",
+    "type": "Bagel Shop",
     "cuisine": null,
-    "address": "15-16 Russell St, London WC2B 5HP",
+    "address": "78 Long Acre, London WC2E 9NG",
     "rating": 3.5,
-    "date": "2026-05-14",
+    "date": "2026-05-19",
     "michelin": false,
-    "lat": 51.512493,
-    "lng": -0.121895
+    "lat": 51.51452,
+    "lng": -0.122536
   },
   {
     "name": "Shambles Kitchen",
@@ -187,15 +187,15 @@
     "lng": -1.0962501
   },
   {
-    "name": "Redemption Roasters",
-    "type": "Coffee Shop",
+    "name": "Czer",
+    "type": "Deli",
     "cuisine": null,
-    "address": "40 Drury Ln, London WC2B 5RR",
-    "rating": 3.5,
-    "date": "2026-05-14",
+    "address": "33 N Row, London W1K 6DE",
+    "rating": 4.5,
+    "date": "2026-05-19",
     "michelin": false,
-    "lat": 51.5146009,
-    "lng": -0.1222876
+    "lat": 51.513269,
+    "lng": -0.154208
   },
   {
     "name": "The York Roast Co.",
@@ -231,15 +231,15 @@
     "lng": -0.1198318
   },
   {
-    "name": "Dilieto",
-    "type": "Sandwich Shop",
+    "name": "Esquires",
+    "type": "Café",
     "cuisine": null,
-    "address": "175 Fleet St, London EC4A 2EA",
+    "address": "243 High Rd, Loughton IG10 1AD",
     "rating": 4.0,
-    "date": "2026-05-13",
+    "date": "2026-05-18",
     "michelin": false,
-    "lat": 51.514297,
-    "lng": -0.108777
+    "lat": 51.647858,
+    "lng": 0.055836
   },
   {
     "name": "Piccolo Ristorante",
@@ -251,6 +251,105 @@
     "michelin": false,
     "lat": 51.5770614,
     "lng": 0.0272697
+  },
+  {
+    "name": "Roe",
+    "type": "Restaurant",
+    "cuisine": "British",
+    "address": "One Park Drive, 5 Park Dr, Canary Wharf Estate, London E14 9GG",
+    "rating": 4.0,
+    "date": "2026-05-17",
+    "michelin": false,
+    "lat": 51.502111,
+    "lng": -0.015037
+  },
+  {
+    "name": "Hagen Espresso Bar",
+    "type": "Coffee Shop",
+    "cuisine": null,
+    "address": "Unit 2, YY, Canary Wharf Estate, London E14 5EZ",
+    "rating": 4.0,
+    "date": "2026-05-17",
+    "michelin": false,
+    "lat": 51.504316,
+    "lng": -0.020446
+  },
+  {
+    "name": "Joice",
+    "type": "Café",
+    "cuisine": "Turkish",
+    "address": "141 High St., London E11 2RL",
+    "rating": 3.5,
+    "date": "2026-05-17",
+    "michelin": false,
+    "lat": 51.576546,
+    "lng": 0.027951
+  },
+  {
+    "name": "Blondies Kitchen",
+    "type": "Biscuit Shop",
+    "cuisine": null,
+    "address": "11 The Piazza, London WC2E 8HD",
+    "rating": 4.0,
+    "date": "2026-05-14",
+    "michelin": false,
+    "lat": 51.512061,
+    "lng": -0.122965
+  },
+  {
+    "name": "Vnilla",
+    "type": "Dessert Shop",
+    "cuisine": null,
+    "address": "14 Endell St, London WC2H 9BB",
+    "rating": 3.5,
+    "date": "2026-02-03",
+    "michelin": false,
+    "lat": 51.5144097,
+    "lng": -0.1241954
+  },
+  {
+    "name": "Hagen",
+    "type": "Coffee Shop",
+    "cuisine": null,
+    "address": "15-16 Russell St, London WC2B 5HP",
+    "rating": 3.5,
+    "date": "2026-05-14",
+    "michelin": false,
+    "lat": 51.512493,
+    "lng": -0.121895
+  },
+  {
+    "name": "Redemption Roasters",
+    "type": "Coffee Shop",
+    "cuisine": null,
+    "address": "40 Drury Ln, London WC2B 5RR",
+    "rating": 3.5,
+    "date": "2026-05-14",
+    "michelin": false,
+    "lat": 51.5146009,
+    "lng": -0.1222876
+  },
+  {
+    "name": "Aguamiel",
+    "type": "Café",
+    "cuisine": null,
+    "address": "24 Wellington St, London WC2E 7DD",
+    "rating": 3.5,
+    "date": "2026-01-22",
+    "michelin": false,
+    "lat": 51.5120593,
+    "lng": -0.120088
+  },
+  {
+    "name": "Dilieto",
+    "type": "Sandwich Shop",
+    "cuisine": null,
+    "address": "175 Fleet St, London EC4A 2EA",
+    "rating": 4.0,
+    "date": "2026-05-13",
+    "michelin": false,
+    "lat": 51.514297,
+    "lng": -0.108777
   },
   {
     "name": "Rodeo Doughnuts",
@@ -297,17 +396,6 @@
     "lng": -0.017201
   },
   {
-    "name": "Vnilla",
-    "type": "Dessert Shop",
-    "cuisine": null,
-    "address": "14 Endell St, London WC2H 9BB",
-    "rating": 3.5,
-    "date": "2026-02-03",
-    "michelin": false,
-    "lat": 51.5144097,
-    "lng": -0.1241954
-  },
-  {
     "name": "Fresko",
     "type": "Dessert Shop",
     "cuisine": null,
@@ -328,17 +416,6 @@
     "michelin": false,
     "lat": 51.5106376,
     "lng": -0.1217894
-  },
-  {
-    "name": "Aguamiel",
-    "type": "Café",
-    "cuisine": null,
-    "address": "24 Wellington St, London WC2E 7DD",
-    "rating": 3.5,
-    "date": "2026-01-22",
-    "michelin": false,
-    "lat": 51.5120593,
-    "lng": -0.120088
   },
   {
     "name": "Santa Nata",
@@ -429,6 +506,17 @@
     "lng": -0.122639
   },
   {
+    "name": "Cafe Rodi",
+    "type": "Café",
+    "cuisine": null,
+    "address": "16 Blackhorse Ln, London E17 6HJ",
+    "rating": 3.5,
+    "date": "2025-11-11",
+    "michelin": false,
+    "lat": 51.5875816,
+    "lng": -0.0402417
+  },
+  {
     "name": "Dumbo",
     "type": "Hamburger Restaurant",
     "cuisine": null,
@@ -495,6 +583,28 @@
     "lng": -0.1248011
   },
   {
+    "name": "Wild Grains Bakery",
+    "type": "Bakery",
+    "cuisine": null,
+    "address": "6 Hooker's Rd, London E17 6DP",
+    "rating": 3.0,
+    "date": "2025-11-03",
+    "michelin": false,
+    "lat": 51.5896011,
+    "lng": -0.0406982
+  },
+  {
+    "name": "Hermanos Colombian Coffee Roasters",
+    "type": "Coffee Shop",
+    "cuisine": null,
+    "address": "7 Blackhorse Ln, London E17 6DS",
+    "rating": 3.0,
+    "date": "2025-11-03",
+    "michelin": false,
+    "lat": 51.5887413,
+    "lng": -0.0400616
+  },
+  {
     "name": "Beaten by a Whisker",
     "type": "Bakery",
     "cuisine": null,
@@ -504,17 +614,6 @@
     "michelin": false,
     "lat": 51.5803596,
     "lng": -0.0315556
-  },
-  {
-    "name": "Cafe Rodi",
-    "type": "Café",
-    "cuisine": null,
-    "address": "16 Blackhorse Ln, London E17 6HJ",
-    "rating": 3.5,
-    "date": "2025-11-11",
-    "michelin": false,
-    "lat": 51.5875816,
-    "lng": -0.0402417
   },
   {
     "name": "Weirdough Bakery",
@@ -581,28 +680,6 @@
     "michelin": false,
     "lat": 51.4952174,
     "lng": -0.1737921
-  },
-  {
-    "name": "Wild Grains Bakery",
-    "type": "Bakery",
-    "cuisine": null,
-    "address": "6 Hooker's Rd, London E17 6DP",
-    "rating": 3.0,
-    "date": "2025-11-03",
-    "michelin": false,
-    "lat": 51.5896011,
-    "lng": -0.0406982
-  },
-  {
-    "name": "Hermanos Colombian Coffee Roasters",
-    "type": "Coffee Shop",
-    "cuisine": null,
-    "address": "7 Blackhorse Ln, London E17 6DS",
-    "rating": 3.0,
-    "date": "2025-11-03",
-    "michelin": false,
-    "lat": 51.5887413,
-    "lng": -0.0400616
   },
   {
     "name": "Fortitude Bakehouse",
@@ -726,6 +803,17 @@
     "lng": -0.3733465
   },
   {
+    "name": "Barney's Pie & Mash",
+    "type": "Pie Shop",
+    "cuisine": null,
+    "address": "6 Garnett Way, London E17 5PE",
+    "rating": 3.0,
+    "date": "2025-10-15",
+    "michelin": false,
+    "lat": 51.5995144,
+    "lng": -0.0352052
+  },
+  {
     "name": "Sarv's Slice",
     "type": "Restaurant",
     "cuisine": null,
@@ -792,6 +880,17 @@
     "lng": 2.3542836
   },
   {
+    "name": "The Hummingbird Bakery",
+    "type": "Bakery",
+    "cuisine": null,
+    "address": "40 Buckingham Palace Rd, London SW1W 0RE",
+    "rating": 3.0,
+    "date": "2025-10-06",
+    "michelin": false,
+    "lat": 51.4971781,
+    "lng": -0.1446753
+  },
+  {
     "name": "Maison Louvard",
     "type": "Bakery",
     "cuisine": null,
@@ -803,15 +902,15 @@
     "lng": 2.3406146
   },
   {
-    "name": "Barney's Pie & Mash",
-    "type": "Pie Shop",
+    "name": "The Ivy St Helens Square, York",
+    "type": "Restaurant",
     "cuisine": null,
-    "address": "6 Garnett Way, London E17 5PE",
-    "rating": 3.0,
-    "date": "2025-10-15",
+    "address": "2 St. Helen’s Square, York YO1 8QP",
+    "rating": 3.5,
+    "date": "2026-02-08",
     "michelin": false,
-    "lat": 51.5995144,
-    "lng": -0.0352052
+    "lat": 53.9600591,
+    "lng": -1.0843586
   },
   {
     "name": "Boulangerie-Pâtisserie Terroirs d'Avenir",
@@ -823,6 +922,17 @@
     "michelin": false,
     "lat": 48.8678137,
     "lng": 2.3481888
+  },
+  {
+    "name": "Gourmet Burger Club",
+    "type": "Restaurant",
+    "cuisine": null,
+    "address": "419-420 Strand, London WC2R 0PS",
+    "rating": 3.5,
+    "date": "2026-01-15",
+    "michelin": false,
+    "lat": 51.5098935,
+    "lng": -0.1232907
   },
   {
     "name": "Efezade Mezze",
@@ -856,116 +966,6 @@
     "michelin": false,
     "lat": 51.41992,
     "lng": -0.202023
-  },
-  {
-    "name": "Café Caribbean",
-    "type": "Restaurant",
-    "cuisine": null,
-    "address": "262 High Rd, Loughton IG10 1RB",
-    "rating": 5.0,
-    "date": "2025-10-30",
-    "michelin": false,
-    "lat": 51.6496363,
-    "lng": 0.0568874
-  },
-  {
-    "name": "Quilon",
-    "type": "Restaurant",
-    "cuisine": null,
-    "address": "41 Buckingham Gate, London SW1E 6AF",
-    "rating": 5.0,
-    "date": "2025-10-30",
-    "michelin": true,
-    "lat": 51.4987366,
-    "lng": -0.1377048
-  },
-  {
-    "name": "The Hummingbird Bakery",
-    "type": "Bakery",
-    "cuisine": null,
-    "address": "40 Buckingham Palace Rd, London SW1W 0RE",
-    "rating": 3.0,
-    "date": "2025-10-06",
-    "michelin": false,
-    "lat": 51.4971781,
-    "lng": -0.1446753
-  },
-  {
-    "name": "Eat Momo",
-    "type": "Restaurant",
-    "cuisine": null,
-    "address": "Arch 229, 1 Bank End, London SE1 9FJ",
-    "rating": 4.0,
-    "date": "2025-10-28",
-    "michelin": false,
-    "lat": 51.5067813,
-    "lng": -0.0926757
-  },
-  {
-    "name": "The Ivy St Helens Square, York",
-    "type": "Restaurant",
-    "cuisine": null,
-    "address": "2 St. Helen’s Square, York YO1 8QP",
-    "rating": 3.5,
-    "date": "2026-02-08",
-    "michelin": false,
-    "lat": 53.9600591,
-    "lng": -1.0843586
-  },
-  {
-    "name": "Rosslyn Coffee",
-    "type": "Coffee Shop",
-    "cuisine": null,
-    "address": "118 London Wall, London EC2Y 5JA",
-    "rating": 4.0,
-    "date": "2025-10-28",
-    "michelin": false,
-    "lat": 51.5176899,
-    "lng": -0.0890369
-  },
-  {
-    "name": "Gourmet Burger Club",
-    "type": "Restaurant",
-    "cuisine": null,
-    "address": "419-420 Strand, London WC2R 0PS",
-    "rating": 3.5,
-    "date": "2026-01-15",
-    "michelin": false,
-    "lat": 51.5098935,
-    "lng": -0.1232907
-  },
-  {
-    "name": "The Cuckfield",
-    "type": "Pub",
-    "cuisine": null,
-    "address": "31 High St., Greater, London E11 2AA",
-    "rating": 4.0,
-    "date": "2025-10-27",
-    "michelin": false,
-    "lat": 51.5792735,
-    "lng": 0.0249269
-  },
-  {
-    "name": "Bobo & Wild",
-    "type": "Restaurant",
-    "cuisine": null,
-    "address": "39, 41 High St., London E11 2AA",
-    "rating": 4.0,
-    "date": "2025-10-25",
-    "michelin": false,
-    "lat": 51.5791409,
-    "lng": 0.0252552
-  },
-  {
-    "name": "Shan Shui Social",
-    "type": "Restaurant",
-    "cuisine": null,
-    "address": "14 Buckingham Palace Rd, London SW1W 0QP",
-    "rating": 4.0,
-    "date": "2025-10-23",
-    "michelin": false,
-    "lat": 51.4977931,
-    "lng": -0.1442945
   },
   {
     "name": "Benihana",
@@ -1034,26 +1034,26 @@
     "lng": -0.1568159
   },
   {
-    "name": "Franco's",
+    "name": "Café Caribbean",
     "type": "Restaurant",
     "cuisine": null,
-    "address": "4600 Park Approach, Leeds LS15 8GB",
+    "address": "262 High Rd, Loughton IG10 1RB",
     "rating": 5.0,
-    "date": "2025-10-19",
+    "date": "2025-10-30",
     "michelin": false,
-    "lat": 53.7995644,
-    "lng": -1.4269292
+    "lat": 51.6496363,
+    "lng": 0.0568874
   },
   {
-    "name": "RAND Coffee Roastery",
-    "type": "Coffee Shop",
+    "name": "Quilon",
+    "type": "Restaurant",
     "cuisine": null,
-    "address": "90 Street Ln, Roundhay, Leeds LS8 2AL",
+    "address": "41 Buckingham Gate, London SW1E 6AF",
     "rating": 5.0,
-    "date": "2025-10-19",
-    "michelin": false,
-    "lat": 53.8449872,
-    "lng": -1.5109382
+    "date": "2025-10-30",
+    "michelin": true,
+    "lat": 51.4987366,
+    "lng": -0.1377048
   },
   {
     "name": "ATESH",
@@ -1067,15 +1067,15 @@
     "lng": 0.0572745
   },
   {
-    "name": "Doh'hut",
-    "type": "Bakery",
+    "name": "Eat Momo",
+    "type": "Restaurant",
     "cuisine": null,
-    "address": "2 Trevelyan Square, Leeds LS1 6ED",
-    "rating": 5.0,
-    "date": "2025-10-18",
+    "address": "Arch 229, 1 Bank End, London SE1 9FJ",
+    "rating": 4.0,
+    "date": "2025-10-28",
     "michelin": false,
-    "lat": 53.7956668,
-    "lng": -1.5437083
+    "lat": 51.5067813,
+    "lng": -0.0926757
   },
   {
     "name": "New Irish Pub",
@@ -1131,6 +1131,83 @@
     "michelin": false,
     "lat": 42.065,
     "lng": 19.504
+  },
+  {
+    "name": "Rosslyn Coffee",
+    "type": "Coffee Shop",
+    "cuisine": null,
+    "address": "118 London Wall, London EC2Y 5JA",
+    "rating": 4.0,
+    "date": "2025-10-28",
+    "michelin": false,
+    "lat": 51.5176899,
+    "lng": -0.0890369
+  },
+  {
+    "name": "The Cuckfield",
+    "type": "Pub",
+    "cuisine": null,
+    "address": "31 High St., Greater, London E11 2AA",
+    "rating": 4.0,
+    "date": "2025-10-27",
+    "michelin": false,
+    "lat": 51.5792735,
+    "lng": 0.0249269
+  },
+  {
+    "name": "Bobo & Wild",
+    "type": "Restaurant",
+    "cuisine": null,
+    "address": "39, 41 High St., London E11 2AA",
+    "rating": 4.0,
+    "date": "2025-10-25",
+    "michelin": false,
+    "lat": 51.5791409,
+    "lng": 0.0252552
+  },
+  {
+    "name": "Shan Shui Social",
+    "type": "Restaurant",
+    "cuisine": null,
+    "address": "14 Buckingham Palace Rd, London SW1W 0QP",
+    "rating": 4.0,
+    "date": "2025-10-23",
+    "michelin": false,
+    "lat": 51.4977931,
+    "lng": -0.1442945
+  },
+  {
+    "name": "Franco's",
+    "type": "Restaurant",
+    "cuisine": null,
+    "address": "4600 Park Approach, Leeds LS15 8GB",
+    "rating": 5.0,
+    "date": "2025-10-19",
+    "michelin": false,
+    "lat": 53.7995644,
+    "lng": -1.4269292
+  },
+  {
+    "name": "RAND Coffee Roastery",
+    "type": "Coffee Shop",
+    "cuisine": null,
+    "address": "90 Street Ln, Roundhay, Leeds LS8 2AL",
+    "rating": 5.0,
+    "date": "2025-10-19",
+    "michelin": false,
+    "lat": 53.8449872,
+    "lng": -1.5109382
+  },
+  {
+    "name": "Doh'hut",
+    "type": "Bakery",
+    "cuisine": null,
+    "address": "2 Trevelyan Square, Leeds LS1 6ED",
+    "rating": 5.0,
+    "date": "2025-10-18",
+    "michelin": false,
+    "lat": 53.7956668,
+    "lng": -1.5437083
   },
   {
     "name": "The Cat's Pyjamas",
@@ -1421,7 +1498,7 @@
   {
     "name": "Artigiano",
     "type": "Restaurant",
-    "cuisine": null,
+    "cuisine": "Albanian",
     "address": "Rruga Papa Gjon Pali II 9, Tiranë 1001, Albania",
     "rating": 5.0,
     "date": "2025-08-25",
@@ -1432,7 +1509,7 @@
   {
     "name": "Artigiano",
     "type": "Restaurant",
-    "cuisine": null,
+    "cuisine": "Albanian",
     "address": "Rruga Abdyl Frashëri Kryqezimi i Librit Universitar, Tiranë, Albania",
     "rating": 4.0,
     "date": "2025-08-24",
@@ -1472,5 +1549,27 @@
     "michelin": false,
     "lat": 41.324,
     "lng": 19.821
+  },
+  {
+    "name": "Comalera",
+    "type": "Restaurant",
+    "cuisine": "Mexican",
+    "address": "Unit 31, Crate, 35 St James St, London E17 7FY",
+    "rating": 4.5,
+    "date": "2026-06-05",
+    "michelin": false,
+    "lat": 51.580604,
+    "lng": -0.032403
+  },
+  {
+    "name": "Afrobbean Kitchen",
+    "type": "Restaurant",
+    "cuisine": "Afro-Carribean",
+    "address": "Unit 26, 35 St James St, London E17 7FY",
+    "rating": 3.0,
+    "date": "2026-06-05",
+    "michelin": false,
+    "lat": 51.580604,
+    "lng": -0.032403
   }
 ]
