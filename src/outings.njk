@@ -21,9 +21,61 @@ permalink: /outings/index.html
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
   <link rel="stylesheet" href="/styles.css">
+  <style>
+    #pw-gate {
+      position: fixed; inset: 0;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999;
+    }
+    #pw-box {
+      border: 1px solid var(--fg);
+      padding: 2rem 2.5rem;
+      display: flex; flex-direction: column; gap: 1rem;
+      min-width: 300px;
+    }
+    .pw-label {
+      color: var(--fg); font-size: 0.75rem;
+      letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    #pw-input {
+      background: transparent; border: 1px solid var(--fg);
+      color: var(--fg); font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.875rem; padding: 0.5rem 0.75rem;
+      outline: none; width: 100%; box-sizing: border-box;
+    }
+    #pw-btn {
+      background: var(--fg); color: var(--bg); border: none;
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem;
+      font-weight: 700; letter-spacing: 0.05em; padding: 0.5rem 1rem;
+      cursor: pointer; text-transform: uppercase; width: 100%;
+    }
+    #pw-btn:hover { opacity: 0.85; }
+    #pw-err {
+      color: var(--fg); font-size: 0.75rem;
+      min-height: 1rem; opacity: 0; transition: opacity 0.2s;
+    }
+    #pw-err.show { opacity: 1; }
+  </style>
 </head>
 <body>
   <div class="page-wrapper" id="page-wrapper">
+  <script>
+    // Apply theme before gate renders to avoid flash
+    (function() {
+      if (localStorage.getItem('theme') === 'dark')
+        document.getElementById('page-wrapper').classList.add('dark-mode');
+    })();
+  </script>
+  <!-- Password Gate -->
+  <div id="pw-gate">
+    <div id="pw-box">
+      <div class="pw-label">//access required//</div>
+      <input type="password" id="pw-input" placeholder="enter password" autocomplete="off">
+      <button id="pw-btn" onclick="checkPw()">Enter</button>
+      <div id="pw-err"></div>
+    </div>
+  </div>
   <div class="container">
     <header class="fade-in">
       <div class="header-left">
@@ -112,7 +164,33 @@ permalink: /outings/index.html
   </div>
 
   <script>
-    // Outings data injected at build time
+    // Password gate
+    function checkPw() {
+      const val = document.getElementById('pw-input').value;
+      if (val === 'ArsenalChampions2026') {
+        localStorage.setItem('outings_unlocked', '1');
+        document.getElementById('pw-gate').style.display = 'none';
+      } else {
+        const err = document.getElementById('pw-err');
+        err.textContent = 'incorrect password';
+        err.classList.add('show');
+        document.getElementById('pw-input').value = '';
+        document.getElementById('pw-input').focus();
+        setTimeout(() => err.classList.remove('show'), 2000);
+      }
+    }
+    (function() {
+      if (localStorage.getItem('outings_unlocked') === '1') {
+        document.getElementById('pw-gate').style.display = 'none';
+      }
+      document.addEventListener('DOMContentLoaded', () => {
+        const inp = document.getElementById('pw-input');
+        if (inp) inp.addEventListener('keydown', e => { if (e.key === 'Enter') checkPw(); });
+        if (document.getElementById('pw-gate').style.display !== 'none') inp.focus();
+      });
+    })();
+
+        // Outings data injected at build time
     const OUTINGS_DATA = {{ outings | dump | safe }};
 
     // Theme toggle (shared with home page via localStorage key 'theme')
