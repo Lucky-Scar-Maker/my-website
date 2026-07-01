@@ -1813,5 +1813,192 @@
     "michelin": false,
     "lat": 51.561003,
     "lng": -0.010179
+  },
+  {
+    "name": "The Italian Bakery",
+    "type": "Café",
+    "cuisine": "Italian",
+    "address": "9 market parade, Forest Rd, London E17 6DY",
+    "rating": 3.0,
+    "date": "2026-07-01",
+    "michelin": false,
+    "lat": 51.589374,
+    "lng": -0.030364
+  },
+  {
+    "name": "Koli's Bar & Restaurant",
+    "type": "Restaurant",
+    "cuisine": "Greek",
+    "address": "42 St James St, London E17 7PE",
+    "rating": 4.0,
+    "date": "2026-06-29",
+    "michelin": false,
+    "lat": 51.579801,
+    "lng": -0.032741
+  },
+  {
+    "name": "Side Street",
+    "type": "Hamburger Restaurant",
+    "cuisine": "N/A",
+    "address": "401 Hoe St, London E17 9AP",
+    "rating": 3.0,
+    "date": "2026-06-28",
+    "michelin": false,
+    "lat": 51.576128,
+    "lng": -0.014382
+  },
+  {
+    "name": "William the Fourth",
+    "type": "Pub",
+    "cuisine": "Pizza",
+    "address": "William The Fourth, 816 High Rd, London E10 6AE",
+    "rating": 4.0,
+    "date": "2026-06-27",
+    "michelin": false,
+    "lat": 51.57482,
+    "lng": -0.01148
+  },
+  {
+    "name": "Zaxx",
+    "type": "Restaurant",
+    "cuisine": "Korean",
+    "address": "161 Francis Rd, London E10 6NT",
+    "rating": 3.5,
+    "date": "2026-06-26",
+    "michelin": false,
+    "lat": 51.563635,
+    "lng": -0.005202
+  },
+  {
+    "name": "Bronson Burgers",
+    "type": "Restaurant",
+    "cuisine": "Burgers",
+    "address": "169 Mare St, London E8 3RG",
+    "rating": 4.0,
+    "date": "2026-06-25",
+    "michelin": false,
+    "lat": 51.540271,
+    "lng": -0.054995
+  },
+  {
+    "name": "Gökyüzü",
+    "type": "Restaurant",
+    "cuisine": "Turkish",
+    "address": "Southend Road, Chingford Rd, London E4 8TA",
+    "rating": 4.0,
+    "date": "2026-06-24",
+    "michelin": false,
+    "lat": 51.604714,
+    "lng": -0.024473
+  },
+  {
+    "name": "Bunsik",
+    "type": "Restaurant",
+    "cuisine": "Korean",
+    "address": "Lower Ground Floor, Fast Food Court, Westfield stratford city, London E20 1EJ",
+    "rating": 3.5,
+    "date": "2026-06-23",
+    "michelin": false,
+    "lat": 51.544337,
+    "lng": -0.00632
+  },
+  {
+    "name": "The Spurstowe Arms",
+    "type": "Pub",
+    "cuisine": "Pizza",
+    "address": "The Spurstowe Arms, 68 Greenwood Rd, London E8 1AB",
+    "rating": 5.0,
+    "date": "2026-06-22",
+    "michelin": false,
+    "lat": 51.544518,
+    "lng": -0.062761
+  },
+  {
+    "name": "Kervan Sofrasi",
+    "type": "Restaurant",
+    "cuisine": "Turkish",
+    "address": "80 Church St, London N9 9PB",
+    "rating": 4.5,
+    "date": "2026-06-20",
+    "michelin": false,
+    "lat": 51.625681,
+    "lng": -0.064696
+  },
+  {
+    "name": "The Goodwood Hotel",
+    "type": "Hotel",
+    "cuisine": "N/A",
+    "address": "The Goodwood Hotel, New Barn Hill, Chichester PO18 0QB",
+    "rating": 4.0,
+    "date": "2026-06-18",
+    "michelin": false,
+    "lat": 50.866283,
+    "lng": -0.733118
+  },
+  {
+    "name": "Deeney's",
+    "type": "Café",
+    "cuisine": "Scottish",
+    "address": "360 High Rd. Leyton, London E10 6QE",
+    "rating": 4.0,
+    "date": "2026-06-12",
+    "michelin": false,
+    "lat": 51.563267,
+    "lng": -0.010556
+  },
+  {
+    "name": "Antepliler Doner",
+    "type": "Restaurant",
+    "cuisine": "Turkish",
+    "address": "43 Grand Parade, Green Lanes, Harringay Ladder, London N4 1AQ",
+    "rating": 4.0,
+    "date": "2026-06-11",
+    "michelin": false,
+    "lat": 51.579714,
+    "lng": -0.098951
+  },
+  {
+    "name": "Crown - Cafe Português",
+    "type": "Café",
+    "cuisine": "N/A",
+    "address": "136 Strand, London WC2R 1HH",
+    "rating": 3.5,
+    "date": "2026-06-10",
+    "michelin": false,
+    "lat": 51.511326,
+    "lng": -0.118488
+  },
+  {
+    "name": "Waterstones",
+    "type": "Book Shop",
+    "cuisine": "N/A",
+    "address": "9-13 Garrick St, London WC2E 9BA",
+    "rating": 4.0,
+    "date": "2026-06-09",
+    "michelin": false,
+    "lat": 51.511712,
+    "lng": -0.126341
+  },
+  {
+    "name": "Kiss the Hippo",
+    "type": "Coffee Shop",
+    "cuisine": "N/A",
+    "address": "24 New Row, London WC2N 4LA",
+    "rating": 3.0,
+    "date": "2026-06-09",
+    "michelin": false,
+    "lat": 51.511164,
+    "lng": -0.126363
+  },
+  {
+    "name": "Waterstones",
+    "type": "Book Shop",
+    "cuisine": "N/A",
+    "address": "The Grand Building, Trafalgar Sq, London WC2N 5EJ",
+    "rating": 4.5,
+    "date": "2026-05-13",
+    "michelin": false,
+    "lat": 51.507564,
+    "lng": -0.126756
   }
 ]
