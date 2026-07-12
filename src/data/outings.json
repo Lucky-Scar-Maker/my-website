@@ -2000,5 +2000,71 @@
     "michelin": false,
     "lat": 51.507564,
     "lng": -0.126756
+  },
+  {
+    "name": "Delight Kitchen",
+    "type": "Restaurant",
+    "cuisine": "Turkish",
+    "address": "11 St James St, London E17 7PJ",
+    "rating": 2.5,
+    "date": "2026-07-12",
+    "michelin": false,
+    "lat": 51.580699,
+    "lng": -0.032688
+  },
+  {
+    "name": "Sodo Pizza",
+    "type": "Restaurant",
+    "cuisine": "Pizza",
+    "address": "21 Hatherley Mews, London E17 4QP",
+    "rating": 4.0,
+    "date": "2026-07-11",
+    "michelin": false,
+    "lat": 51.586363,
+    "lng": -0.02088
+  },
+  {
+    "name": "Voodoo Ray's",
+    "type": "Restaurant",
+    "cuisine": "Pizza",
+    "address": "95 Kingsland High St, London, E82PB",
+    "rating": 3.0,
+    "date": "2026-07-11",
+    "michelin": false,
+    "lat": 51.549468,
+    "lng": -0.075546
+  },
+  {
+    "name": "Berberè Pizzeria",
+    "type": "Restaurant",
+    "cuisine": "Pizza",
+    "address": "154, The Street, Montfichet Rd, London E20 1EN",
+    "rating": 3.5,
+    "date": "2026-07-10",
+    "michelin": false,
+    "lat": 51.542852,
+    "lng": -0.006731
+  },
+  {
+    "name": "Bocca Bocca",
+    "type": "Restaurant",
+    "cuisine": "Italian",
+    "address": "781 High Rd Leytonstone, Bushwood, London E11 4QS",
+    "rating": 2.5,
+    "date": "2026-07-05",
+    "michelin": false,
+    "lat": 51.566459,
+    "lng": 0.010029
+  },
+  {
+    "name": "Shah's Halal Food",
+    "type": "Restaurant",
+    "cuisine": "N/A",
+    "address": "164 High St, London E17 7JS",
+    "rating": 3.5,
+    "date": "2026-07-03",
+    "michelin": false,
+    "lat": 51.583586,
+    "lng": -0.025215
   }
 ]
