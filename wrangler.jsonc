@@ -5,6 +5,9 @@
   "observability": {
     "enabled": true
   },
+  "routes": [
+    { "pattern": "kristiancamaj.com", "custom_domain": true }
+  ],
   "assets": {
     "directory": "_site"
   }
