@@ -26,7 +26,7 @@ title: Kristian Camaj
         <nav>
           <a href="#about">About</a>
           <a href="#writing">Writing</a>
-          <a href="#shelf">Shelf</a>
+          {# DORMANT 2026-09-05: <a href="#shelf">Shelf</a> #}
           {# DORMANT 2026-09-05: <a href="/outings/">Outings</a> #}
         </nav>
       </div>
@@ -67,6 +67,7 @@ title: Kristian Camaj
       </div>
     </div>
 
+    {% if false %}{# DORMANT 2026-09-05: entire Shelf hidden (Bookshelf + Long Reads removed; Movie Shelf + Library already dormant within). Restore by deleting this if-false wrapper and its matching endif below. #}
     <section class="bookshelf-section fade-in" id="shelf">
       <div class="shelf-tabs">
         <button class="shelf-tab active" onclick="switchTab('books')">Bookshelf</button>
@@ -175,6 +176,7 @@ title: Kristian Camaj
       </div>
       #}
     </section>
+    {% endif %}
 
     {# DORMANT 2026-09-05 (Recent Outings hidden — data still in outings.json):
     <section class="outings-teaser fade-in" id="recent-outings">
@@ -810,11 +812,9 @@ title: Kristian Camaj
     // Initialize
     document.addEventListener('DOMContentLoaded', () => {
       loadTheme();
-      populateBooks();
-      updateBookCount();
-      populateEssays();
-      updateEssayCount();
-      // DORMANT 2026-09-05: Movie Shelf & Library hidden; guarded so their absent DOM doesn't error
+      // DORMANT 2026-09-05: entire Shelf section hidden; all populate calls guarded so absent DOM doesn't error
+      if (document.getElementById('tab-books')) { populateBooks(); updateBookCount(); }
+      if (document.getElementById('tab-essays')) { populateEssays(); updateEssayCount(); }
       if (document.getElementById('tab-movies')) { populateMovies(); updateMovieCount(); }
       if (document.getElementById('tab-library')) { populateLibraryStats(); populateLibraryAuthors(); renderLibrary(); }
     });
