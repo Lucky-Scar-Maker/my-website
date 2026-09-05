@@ -27,7 +27,7 @@ title: Kristian Camaj
           <a href="#about">About</a>
           <a href="#writing">Writing</a>
           <a href="#shelf">Shelf</a>
-          <a href="/outings/">Outings</a>
+          {# DORMANT 2026-09-05: <a href="/outings/">Outings</a> #}
         </nav>
       </div>
       <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
@@ -70,9 +70,9 @@ title: Kristian Camaj
     <section class="bookshelf-section fade-in" id="shelf">
       <div class="shelf-tabs">
         <button class="shelf-tab active" onclick="switchTab('books')">Bookshelf</button>
-        <button class="shelf-tab" onclick="switchTab('movies')">Movie Shelf</button>
+        {# DORMANT 2026-09-05: <button class="shelf-tab" onclick="switchTab('movies')">Movie Shelf</button> #}
         <button class="shelf-tab" onclick="switchTab('essays')">Long Reads</button>
-        <button class="shelf-tab" onclick="switchTab('library')">Library</button>
+        {# DORMANT 2026-09-05: <button class="shelf-tab" onclick="switchTab('library')">Library</button> #}
       </div>
 
       <div class="tab-content active" id="tab-books">
@@ -99,6 +99,7 @@ title: Kristian Camaj
 
       </div>
 
+      {# DORMANT 2026-09-05 (Movie Shelf hidden — data still in movies.json):
       <div class="tab-content" id="tab-movies">
         <div class="search-box">
           <input type="text" id="movie-search" placeholder="Search movies by title..." oninput="searchMovies()">
@@ -123,6 +124,7 @@ title: Kristian Camaj
         <div class="year-label movie-year">2023</div>
         <div class="movie-grid" id="movies-2023"></div>
       </div>
+      #}
 
       <div class="tab-content" id="tab-essays">
         <div class="sort-controls">
@@ -135,6 +137,7 @@ title: Kristian Camaj
         <ul class="essays-list" id="essays-list"></ul>
       </div>
 
+      {# DORMANT 2026-09-05 (Library hidden — data still in library.json):
       <div class="tab-content" id="tab-library">
         <div class="library-stats" id="library-stats">Loading…</div>
         <div class="library-progress-wrap">
@@ -170,8 +173,10 @@ title: Kristian Camaj
           <div id="library-authors"></div>
         </div>
       </div>
+      #}
     </section>
 
+    {# DORMANT 2026-09-05 (Recent Outings hidden — data still in outings.json):
     <section class="outings-teaser fade-in" id="recent-outings">
       <div class="teaser-head">
         <h2 class="section-title" style="margin-bottom:0;padding-bottom:0;border-bottom:none">Recent Outings</h2>
@@ -189,6 +194,7 @@ title: Kristian Camaj
         {%- endfor %}
       </ul>
     </section>
+    #}
 
     <footer>
     </footer>
@@ -806,13 +812,11 @@ title: Kristian Camaj
       loadTheme();
       populateBooks();
       updateBookCount();
-      populateMovies();
-      updateMovieCount();
       populateEssays();
       updateEssayCount();
-      populateLibraryStats();
-      populateLibraryAuthors();
-      renderLibrary();
+      // DORMANT 2026-09-05: Movie Shelf & Library hidden; guarded so their absent DOM doesn't error
+      if (document.getElementById('tab-movies')) { populateMovies(); updateMovieCount(); }
+      if (document.getElementById('tab-library')) { populateLibraryStats(); populateLibraryAuthors(); renderLibrary(); }
     });
   </script>
 </body>
